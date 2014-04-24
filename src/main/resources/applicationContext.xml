@@ -10,7 +10,7 @@
 	<bean id="xmlReader" class="org.mwindexer.indexer.XmlDumpReader">
 		<property name="writers">
 			<list>
-				<bean ref="solrWriter" />
+				<ref bean="solrWriter" />
 			</list>
 		</property>
 	</bean>

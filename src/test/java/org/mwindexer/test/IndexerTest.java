@@ -35,7 +35,7 @@ public class IndexerTest {
 		LOG.info("testing indexer");
 		String args[] = { "-i", "src/test/resources/sample.xml" };
 
-		 Indexer indexer = new Indexer(args);
+//		 Indexer indexer = new Indexer(args);
 
 	}
 
