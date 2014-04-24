@@ -2,17 +2,17 @@ package org.mwindexer;
 
 import java.io.InputStream;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class Configuration {
 
 	private InputStream inputStream;
 	
 	private String solrURL;
 
-	@Bean
+//	@Bean
 	public InputStream getInputStream() {
 		return inputStream;
 	}
@@ -21,7 +21,7 @@ public class Configuration {
 		this.inputStream = inputStream;
 	}
 	
-	@Bean
+//	@Bean
 	public String getSolrURL() {
 		return solrURL;
 	}

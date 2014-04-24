@@ -24,9 +24,9 @@ import org.mwindexer.indexer.TitleMatchFilter;
 import org.mwindexer.indexer.XmlDumpReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.env.SimpleCommandLinePropertySource;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 
 public class Indexer {
 
@@ -66,18 +66,18 @@ public class Indexer {
 
 		configuration.setInputStream(inputStream);
 
-		ApplicationContext context = new ClassPathXmlApplicationContext();
+//		ApplicationContext context = new ClassPathXmlApplicationContext();
 
-		XmlDumpReader reader = context.getBean(XmlDumpReader.class);
+//		XmlDumpReader reader = context.getBean(XmlDumpReader.class);
 
 		LOG.info("Reading dump input");
 		DateTime startDateTime = DateTime.now();
 
-		try {
-			reader.readDump();
-		} catch (IOException e) {
-			LOG.error("Problem reading dump", e);
-		}
+//		try {
+//			reader.readDump();
+//		} catch (IOException e) {
+//			LOG.error("Problem reading dump", e);
+//		}
 
 		DateTime endDateTime = DateTime.now();
 		Interval interval = new Interval(startDateTime, endDateTime);
