@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.0.3.RELEASE</spring.version>
-		<solr.version>4.7.0</solr.version>
+		<solr.version>4.7.2</solr.version>
 	</properties>
 
 	<dependencies>
@@ -22,6 +22,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
@@ -124,6 +129,22 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-shade-plugin</artifactId> -->
+<!-- 				<version>1.6</version> -->
+<!-- 				<configuration> -->
+<!-- 					<promoteTransitiveDependencies>true</promoteTransitiveDependencies> -->
+<!-- 				</configuration> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<phase>package</phase> -->
+<!-- 						<goals> -->
+<!-- 							<goal>shade</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
@@ -148,9 +169,11 @@
 				<configuration>
 					<archive>
 						<manifestEntries>
-							<Class-Path>lib</Class-Path>
+							<Class-Path>.</Class-Path>
 						</manifestEntries>
 						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
 							<mainClass>org.mwindexer.Indexer</mainClass>
 						</manifest>
 					</archive>

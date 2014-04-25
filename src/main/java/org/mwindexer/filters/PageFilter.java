@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright 2006 by Aurimas Fischer
+ * Copyright 2005 by Brion Vibber
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +20,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
+ * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
-public class TimeStampFilter implements DumpWriter {
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
+
+public abstract class PageFilter implements DumpWriter {
 	DumpWriter sink;
-	protected Calendar filterTimeStamp;
-	protected Page currentPage;
-	protected boolean pageWritten;
+	boolean showThisPage;
 
-	public TimeStampFilter(DumpWriter sink, String timeStamp)
-			throws ParseException {
+	public PageFilter(DumpWriter sink) {
 		this.sink = sink;
-		filterTimeStamp = Calendar.getInstance();
-		filterTimeStamp
-				.setTime(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-						.parse(timeStamp));
 	}
 
 	public void close() throws IOException {
@@ -61,21 +57,22 @@ public class TimeStampFilter implements DumpWriter {
 	}
 
 	public void writeStartPage(Page page) throws IOException {
-		currentPage = page;
-		pageWritten = false;
+		showThisPage = pass(page);
+		if (showThisPage)
+			sink.writeStartPage(page);
 	}
 
 	public void writeEndPage() throws IOException {
-		if (pageWritten) {
+		if (showThisPage)
 			sink.writeEndPage();
-		}
 	}
 
 	public void writeRevision(Revision revision) throws IOException {
-		if (!pageWritten) {
-			sink.writeStartPage(currentPage);
-			pageWritten = true;
-		}
-		sink.writeRevision(revision);
+		if (showThisPage)
+			sink.writeRevision(revision);
+	}
+
+	protected boolean pass(Page page) {
+		return true;
 	}
 }

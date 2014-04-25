@@ -29,6 +29,11 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
+
 public class MultiWriter implements DumpWriter {
 	List<DumpWriter> sinks;
 

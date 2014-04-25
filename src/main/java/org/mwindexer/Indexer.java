@@ -11,20 +11,19 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import org.mwindexer.indexer.AfterTimeStampFilter;
-import org.mwindexer.indexer.BeforeTimeStampFilter;
-import org.mwindexer.indexer.DumpWriter;
-import org.mwindexer.indexer.ExactListFilter;
-import org.mwindexer.indexer.LatestFilter;
-import org.mwindexer.indexer.ListFilter;
-import org.mwindexer.indexer.NamespaceFilter;
-import org.mwindexer.indexer.NotalkFilter;
-import org.mwindexer.indexer.RevisionListFilter;
-import org.mwindexer.indexer.TitleMatchFilter;
+import org.mwindexer.filters.AfterTimeStampFilter;
+import org.mwindexer.filters.BeforeTimeStampFilter;
+import org.mwindexer.filters.ExactListFilter;
+import org.mwindexer.filters.LatestFilter;
+import org.mwindexer.filters.ListFilter;
+import org.mwindexer.filters.NamespaceFilter;
+import org.mwindexer.filters.NotalkFilter;
+import org.mwindexer.filters.RevisionListFilter;
+import org.mwindexer.filters.TitleMatchFilter;
 import org.mwindexer.indexer.XmlDumpReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Indexer {
@@ -38,51 +37,68 @@ public class Indexer {
 	public Indexer(String[] args) {
 		LOG.info("MediaWiki Dump File Indexer");
 
+		// create a new spring configuration component
 		Configuration configuration = new Configuration();
 
+		// parse the command line options
 		CommandLine cl = parseArguments(args);
+		// get the user's solr url
 		String solrURL = cl.getOptionValue("u");
+		// get the user's input file path
 		String inputPath = cl.getOptionValue("i");
 
+		// if a solr url was specified, overwrite the default
 		if (solrURL != null) {
 			LOG.info("Solr URL: " + solrURL);
 			System.setProperty("solr.url", solrURL);
 		}
 
+		// create the input stream
 		InputStream inputStream = null;
 
 		try {
-			if (inputPath == null) {
-				LOG.info("No Input File specified, using Standard Input");
-				inputStream = Tools.openStandardInput();
-			} else {
+			if (inputPath != null) {
+				// if an input path was specified by user, use it as the input
 				LOG.info("Input File: " + inputPath);
 				inputStream = Tools.openInputFile(inputPath);
+			} else {
+				// if no input path specified, use the standard input
+				LOG.info("No Input File specified, using Standard Input");
+				inputStream = Tools.openStandardInput();
 			}
 		} catch (IOException e) {
 			LOG.error("Error opening input stream", e);
 		}
 
+		// set the input stream to the spring configuraiton
 		configuration.setInputStream(inputStream);
 
-		ApplicationContext context = new ClassPathXmlApplicationContext();
+		// instantiate the application context using a classpath
+		// applicationContext.xml file
+		LOG.debug("Initializing Application Context");
+		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext()) {
+			// get the configured dump reader
+			XmlDumpReader reader = context.getBean("xmlReader",
+					XmlDumpReader.class);
 
-		 XmlDumpReader reader = context.getBean(XmlDumpReader.class);
+			// notify user we are starting data ingest
+			LOG.info("Reading dump input");
+			DateTime startDateTime = DateTime.now();
 
-		LOG.info("Reading dump input");
-		DateTime startDateTime = DateTime.now();
+			try {
+				reader.readDump();
+			} catch (IOException e) {
+				LOG.error("Problem reading dump", e);
+			}
 
-		try {
-			reader.readDump();
-		} catch (IOException e) {
-			LOG.error("Problem reading dump", e);
+			DateTime endDateTime = DateTime.now();
+			// calculate how long the process took
+			Interval interval = new Interval(startDateTime, endDateTime);
+
+			LOG.info("Total Time: "
+					+ interval.toDuration().getStandardSeconds());
+			LOG.info("All done.");
 		}
-
-		DateTime endDateTime = DateTime.now();
-		Interval interval = new Interval(startDateTime, endDateTime);
-
-		LOG.info("Total Time: " + interval.toDuration().getStandardSeconds());
-		LOG.info("All done.");
 	}
 
 	public CommandLine parseArguments(String[] args) {

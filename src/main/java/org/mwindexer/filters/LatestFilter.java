@@ -23,14 +23,52 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-public class NotalkFilter extends PageFilter {
-	public NotalkFilter(DumpWriter sink) {
-		super(sink);
+import java.io.IOException;
+
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
+
+public class LatestFilter implements DumpWriter {
+	DumpWriter sink;
+	Revision lastRevision;
+
+	public LatestFilter(DumpWriter sink) {
+		this.sink = sink;
 	}
 
-	protected boolean pass(Page page) {
-		return !page.Title.isTalk();
+	public void close() throws IOException {
+		sink.close();
+	}
+
+	public void writeStartWiki() throws IOException {
+		sink.writeStartWiki();
+	}
+
+	public void writeEndWiki() throws IOException {
+		sink.writeEndWiki();
+	}
+
+	public void writeSiteinfo(Siteinfo info) throws IOException {
+		sink.writeSiteinfo(info);
+	}
+
+	public void writeStartPage(Page page) throws IOException {
+		sink.writeStartPage(page);
+	}
+
+	public void writeEndPage() throws IOException {
+		if (lastRevision != null) {
+			sink.writeRevision(lastRevision);
+			lastRevision = null;
+		}
+		sink.writeEndPage();
+	}
+
+	public void writeRevision(Revision revision) {
+		lastRevision = revision;
 	}
 }

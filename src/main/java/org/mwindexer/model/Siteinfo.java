@@ -23,17 +23,14 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.model;
 
-import java.io.IOException;
+import org.mwindexer.indexer.NamespaceSet;
 
-public class ExactListFilter extends ListFilter {
-	public ExactListFilter(DumpWriter sink, String sourceFileName)
-			throws IOException {
-		super(sink, sourceFileName);
-	}
-
-	protected boolean pass(Page page) {
-		return list.containsKey(page.Title.toString());
-	}
+public class Siteinfo {
+	public String Sitename;
+	public String Base;
+	public String Generator;
+	public String Case;
+	public NamespaceSet Namespaces;
 }

@@ -34,6 +34,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TimeZone;
 
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Contributor;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
+
 public class XmlDumpWriter implements DumpWriter {
 	protected OutputStream stream;
 	protected XmlWriter writer;

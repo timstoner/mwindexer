@@ -10,17 +10,20 @@
 	<bean id="xmlReader" class="org.mwindexer.indexer.XmlDumpReader">
 		<property name="writers">
 			<list>
-				<ref bean="solrWriter" />
+				<ref bean="progressFilter" />
 			</list>
 		</property>
 	</bean>
 
-	<bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
-		<constructor-arg name="baseURL" value="${solr.url}" />
+	<bean id="solrWriter" class="org.mwindexer.indexer.SolrDumpWriter">
+		<constructor-arg name="location" value="${solr.location}" />
+		<constructor-arg name="type" value="${solr.type}" />
+		<constructor-arg name="buffersize" value="${solr.buffersize}" />
 	</bean>
 
-	<bean id="solrWriter" class="org.mwindexer.indexer.SolrDumpWriter" />
-	<bean id="multiWriter" class="org.mwindexer.indexer.MultiWriter">
-
+	<!-- Filters 'decorate' dump writers -->
+	<bean id="progressFilter" class="org.mwindexer.filters.ProgressFilter">
+		<constructor-arg name="sink" ref="solrWriter" />
+		<constructor-arg name="interval" value="${progress.interval}" />
 	</bean>
 </beans>

@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright 2005 by Brion Vibber
+ * Copyright (C) 2005 by Brion Vibber
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,47 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.model;
 
-import java.io.IOException;
+import java.util.IdentityHashMap;
 
-public interface DumpWriter {
-	void close() throws IOException;
+public final class Buffer {
 
-	void writeStartWiki() throws IOException;
+	private Buffer() {
+	}
 
-	void writeEndWiki() throws IOException;
+	private static final IdentityHashMap<Thread, char[]> BUFFERS = new IdentityHashMap<Thread, char[]>();
 
-	void writeSiteinfo(Siteinfo info) throws IOException;
+	private static Thread lastThread;
+	private static char[] lastBuffer;
 
-	void writeStartPage(Page page) throws IOException;
+	public static synchronized char[] get(int capacity) {
+		final Thread thread = Thread.currentThread();
+		char[] buffer;
 
-	void writeEndPage() throws IOException;
+		if (lastThread == thread) {
+			buffer = lastBuffer;
+		} else {
+			lastThread = thread;
+			buffer = lastBuffer = BUFFERS.get(thread);
+		}
 
-	void writeRevision(Revision revision) throws IOException;
+		if (buffer == null) {
+			buffer = lastBuffer = new char[capacity];
+			BUFFERS.put(thread, buffer);
+		} else if (buffer.length < capacity) {
+			int newsize = buffer.length * 2;
+			if (newsize < capacity)
+				newsize = capacity;
+			/*
+			 * // Debug! System.err.println("** Growing buffer to " + newsize);
+			 * try { throw new RuntimeException("foo"); } catch
+			 * (RuntimeException e) { e.printStackTrace(); }
+			 */
+			buffer = lastBuffer = new char[newsize];
+			BUFFERS.put(thread, buffer);
+		}
+
+		return buffer;
+	}
 }
