@@ -69,6 +69,8 @@ public class LatestFilter implements DumpWriter {
 	}
 
 	public void writeRevision(Revision revision) {
-		lastRevision = revision;
+		if (revision.Timestamp.after(lastRevision.Timestamp)) {
+			lastRevision = revision;
+		}
 	}
 }
