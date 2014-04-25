@@ -3,11 +3,9 @@ package org.mwindexer.test;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.core.CoreContainer;
-import org.apache.solr.util.AbstractSolrTestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.Indexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

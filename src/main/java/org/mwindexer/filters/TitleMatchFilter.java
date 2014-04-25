@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright (C) 2005 by Brion Vibber
+ * Copyright 2005 by Brion Vibber
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,47 +23,22 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-import java.util.IdentityHashMap;
+import java.util.regex.Pattern;
 
-public final class Buffer {
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
 
-	private Buffer() {
+public class TitleMatchFilter extends PageFilter {
+	Pattern regex;
+
+	public TitleMatchFilter(DumpWriter sink, String regexString) {
+		super(sink);
+		regex = Pattern.compile(regexString);
 	}
 
-	private static final IdentityHashMap<Thread, char[]> BUFFERS = new IdentityHashMap<Thread, char[]>();
-
-	private static Thread lastThread;
-	private static char[] lastBuffer;
-
-	public static synchronized char[] get(int capacity) {
-		final Thread thread = Thread.currentThread();
-		char[] buffer;
-
-		if (lastThread == thread) {
-			buffer = lastBuffer;
-		} else {
-			lastThread = thread;
-			buffer = lastBuffer = BUFFERS.get(thread);
-		}
-
-		if (buffer == null) {
-			buffer = lastBuffer = new char[capacity];
-			BUFFERS.put(thread, buffer);
-		} else if (buffer.length < capacity) {
-			int newsize = buffer.length * 2;
-			if (newsize < capacity)
-				newsize = capacity;
-			/*
-			 * // Debug! System.err.println("** Growing buffer to " + newsize);
-			 * try { throw new RuntimeException("foo"); } catch
-			 * (RuntimeException e) { e.printStackTrace(); }
-			 */
-			buffer = lastBuffer = new char[newsize];
-			BUFFERS.put(thread, buffer);
-		}
-
-		return buffer;
+	protected boolean pass(Page page) {
+		return regex.matcher(page.Title.toString()).matches();
 	}
 }

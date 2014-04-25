@@ -1,14 +1,17 @@
-package org.mwindexer;
+package org.mwindexer.filters;
 
 import java.io.IOException;
 import java.text.MessageFormat;
 
-import org.mwindexer.indexer.DumpWriter;
-import org.mwindexer.indexer.Page;
-import org.mwindexer.indexer.PageFilter;
-import org.mwindexer.indexer.Revision;
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProgressFilter extends PageFilter {
+	private static Logger LOG = LoggerFactory.getLogger(ProgressFilter.class);
+
 	int pages = 0;
 	int revisions = 0;
 	int interval = 1000;
@@ -60,7 +63,7 @@ public class ProgressFilter extends PageFilter {
 	}
 
 	protected void sendOutput(String text) {
-		System.err.println(text);
+		LOG.info(text);
 	}
 
 	private static Object rate(long delta, int count) {

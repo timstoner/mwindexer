@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright 2005 by Brion Vibber
+ * Copyright 2006 by Aurimas Fischer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,44 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.text.ParseException;
 
-public class ListFilter extends PageFilter {
-	protected HashMap<String, String> list;
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Revision;
 
-	public ListFilter(DumpWriter sink, String sourceFileName)
-			throws IOException {
-		super(sink);
-		list = new HashMap<String, String>();
-		BufferedReader input = new BufferedReader(new InputStreamReader(
-				new FileInputStream(sourceFileName), "utf-8"));
-		String line = input.readLine();
-		while (line != null) {
-			if (!line.startsWith("#")) {
-				String title = line.trim();
-				title = title.replace("_", " ");
-				if (title.startsWith(":"))
-					title = line.substring(1);
+public class AfterTimeStampFilter extends TimeStampFilter {
 
-				if (title.length() > 0)
-					list.put(title, title);
-			}
-			line = input.readLine();
-		}
-		input.close();
+	public AfterTimeStampFilter(DumpWriter sink, String timeStamp)
+			throws ParseException {
+		super(sink, timeStamp);
 	}
 
-	protected boolean pass(Page page) {
-		return list.containsKey(page.Title.subjectPage().toString())
-				|| list.containsKey(page.Title.talkPage().toString());
+	public void writeRevision(Revision revision) throws IOException {
+		if (revision.Timestamp.after(super.filterTimeStamp)) {
+			super.writeRevision(revision);
+		}
 	}
 }

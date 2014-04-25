@@ -23,51 +23,20 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.model;
 
-import java.io.IOException;
+import java.util.Hashtable;
 
-public abstract class PageFilter implements DumpWriter {
-	DumpWriter sink;
-	boolean showThisPage;
+public class Page {
+	public Title Title;
+	public int Id;
+	public boolean isRedirect = false;
+	public Hashtable<String, Object> DiscussionThreadingInfo;
+	public String Restrictions;
 
-	public PageFilter(DumpWriter sink) {
-		this.sink = sink;
-	}
-
-	public void close() throws IOException {
-		sink.close();
-	}
-
-	public void writeStartWiki() throws IOException {
-		sink.writeStartWiki();
-	}
-
-	public void writeEndWiki() throws IOException {
-		sink.writeEndWiki();
-	}
-
-	public void writeSiteinfo(Siteinfo info) throws IOException {
-		sink.writeSiteinfo(info);
-	}
-
-	public void writeStartPage(Page page) throws IOException {
-		showThisPage = pass(page);
-		if (showThisPage)
-			sink.writeStartPage(page);
-	}
-
-	public void writeEndPage() throws IOException {
-		if (showThisPage)
-			sink.writeEndPage();
-	}
-
-	public void writeRevision(Revision revision) throws IOException {
-		if (showThisPage)
-			sink.writeRevision(revision);
-	}
-
-	protected boolean pass(Page page) {
-		return true;
+	public Page() {
+		// <restrictions> is optional...
+		Restrictions = "";
+		DiscussionThreadingInfo = new Hashtable<String, Object>();
 	}
 }

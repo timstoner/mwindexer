@@ -23,20 +23,20 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-public class Contributor {
-	public String Username;
-	public int Id;
-	public boolean isIP = false;
+import java.io.IOException;
 
-	public Contributor() {
-		this(null, 0);
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+
+public class ExactListFilter extends ListFilter {
+	public ExactListFilter(DumpWriter sink, String sourceFileName)
+			throws IOException {
+		super(sink, sourceFileName);
 	}
 
-	public Contributor(String username, int id) {
-		Username = username;
-		Id = id;
+	protected boolean pass(Page page) {
+		return list.containsKey(page.Title.toString());
 	}
-
 }

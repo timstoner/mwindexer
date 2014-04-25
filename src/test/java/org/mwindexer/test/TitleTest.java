@@ -36,7 +36,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mwindexer.indexer.NamespaceSet;
-import org.mwindexer.indexer.Title;
+import org.mwindexer.model.Title;
 
 public class TitleTest {
 	NamespaceSet namespaces;

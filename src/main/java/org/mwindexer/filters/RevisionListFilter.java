@@ -23,7 +23,7 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
 import java.lang.Integer;
 import java.io.BufferedReader;
@@ -31,6 +31,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.TreeSet;
+
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
 
 public class RevisionListFilter implements DumpWriter {
 	DumpWriter sink;
@@ -42,17 +47,19 @@ public class RevisionListFilter implements DumpWriter {
 			throws IOException {
 		this.sink = sink;
 		revIds = new TreeSet<Integer>();
-		BufferedReader input = new BufferedReader(new InputStreamReader(
-				new FileInputStream(sourceFileName), "utf-8"));
-		String line = input.readLine();
-		while (line != null) {
-			line = line.trim();
-			if (line.length() > 0 && !line.startsWith("#")) {
-				revIds.add(new Integer(line));
+
+		FileInputStream fis = new FileInputStream(sourceFileName);
+		InputStreamReader isr = new InputStreamReader(fis, "utf-8");
+
+		try (BufferedReader input = new BufferedReader(isr)) {
+			String line;
+			while ((line = input.readLine()) != null) {
+				line = line.trim();
+				if (line.length() > 0 && !line.startsWith("#")) {
+					revIds.add(Integer.parseInt(line));
+				}
 			}
-			line = input.readLine();
 		}
-		input.close();
 	}
 
 	public void close() throws IOException {

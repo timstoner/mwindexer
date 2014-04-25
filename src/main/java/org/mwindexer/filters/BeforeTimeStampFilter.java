@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright 2005 by Brion Vibber
+ * Copyright 2006 by Aurimas Fischer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,22 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-import java.util.regex.Pattern;
+import java.io.IOException;
+import java.text.ParseException;
 
-public class TitleMatchFilter extends PageFilter {
-	Pattern regex;
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Revision;
 
-	public TitleMatchFilter(DumpWriter sink, String regexString) {
-		super(sink);
-		regex = Pattern.compile(regexString);
+public class BeforeTimeStampFilter extends TimeStampFilter {
+
+	public BeforeTimeStampFilter(DumpWriter sink, String timeStamp)
+			throws ParseException {
+		super(sink, timeStamp);
 	}
 
-	protected boolean pass(Page page) {
-		return regex.matcher(page.Title.toString()).matches();
+	public void writeRevision(Revision revision) throws IOException {
+		if (revision.Timestamp.before(super.filterTimeStamp)) {
+			super.writeRevision(revision);
+		}
 	}
 }

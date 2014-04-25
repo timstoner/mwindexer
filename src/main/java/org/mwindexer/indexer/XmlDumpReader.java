@@ -27,16 +27,20 @@ package org.mwindexer.indexer;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.mwindexer.DumpWriter;
+import org.mwindexer.Tools;
+import org.mwindexer.model.Contributor;
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
+import org.mwindexer.model.Title;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -411,7 +415,7 @@ public class XmlDumpReader extends DefaultHandler {
 	}
 
 	void readTimestamp() {
-		rev.Timestamp = parseUTCTimestamp(bufferContents());
+		rev.Timestamp = Tools.parseUTCTimestamp(bufferContents());
 	}
 
 	void readComment() {
@@ -451,22 +455,5 @@ public class XmlDumpReader extends DefaultHandler {
 	void readIp() {
 		contrib.Username = bufferContents();
 		contrib.isIP = true;
-	}
-
-	private static final TimeZone utc = TimeZone.getTimeZone("UTC");
-
-	private static Calendar parseUTCTimestamp(String text) {
-		// 2003-10-26T04:50:47Z
-		// We're doing this manually for now, though DateFormatter might work...
-		String trimmed = text.trim();
-		GregorianCalendar ts = new GregorianCalendar(utc);
-		ts.set(Integer.parseInt(trimmed.substring(0, 0 + 4)), // year
-				Integer.parseInt(trimmed.substring(5, 5 + 2)) - 1, // month is
-																	// 0-based!
-				Integer.parseInt(trimmed.substring(8, 8 + 2)), // day
-				Integer.parseInt(trimmed.substring(11, 11 + 2)), // hour
-				Integer.parseInt(trimmed.substring(14, 14 + 2)), // minute
-				Integer.parseInt(trimmed.substring(17, 17 + 2))); // second
-		return ts;
 	}
 }

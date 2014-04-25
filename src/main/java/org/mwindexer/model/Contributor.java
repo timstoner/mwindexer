@@ -23,12 +23,20 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.model;
 
-public class Siteinfo {
-	public String Sitename;
-	public String Base;
-	public String Generator;
-	public String Case;
-	public NamespaceSet Namespaces;
+public class Contributor {
+	public String Username;
+	public int Id;
+	public boolean isIP = false;
+
+	public Contributor() {
+		this(null, 0);
+	}
+
+	public Contributor(String username, int id) {
+		Username = username;
+		Id = id;
+	}
+
 }

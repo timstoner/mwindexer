@@ -23,9 +23,12 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
 import java.util.HashMap;
+
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
 
 public class NamespaceFilter extends PageFilter {
 	boolean invert;

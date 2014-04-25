@@ -1,6 +1,6 @@
 /*
  * MediaWiki import/export processing tools
- * Copyright 2006 by Aurimas Fischer
+ * Copyright 2005 by Brion Vibber
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
+ * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer;
 
 import java.io.IOException;
-import java.text.ParseException;
 
-public class AfterTimeStampFilter extends TimeStampFilter {
+import org.mwindexer.model.Page;
+import org.mwindexer.model.Revision;
+import org.mwindexer.model.Siteinfo;
 
-	public AfterTimeStampFilter(DumpWriter sink, String timeStamp)
-			throws ParseException {
-		super(sink, timeStamp);
-	}
+public interface DumpWriter {
+	void close() throws IOException;
 
-	public void writeRevision(Revision revision) throws IOException {
-		if (revision.Timestamp.after(super.filterTimeStamp)) {
-			super.writeRevision(revision);
-		}
-	}
+	void writeStartWiki() throws IOException;
+
+	void writeEndWiki() throws IOException;
+
+	void writeSiteinfo(Siteinfo info) throws IOException;
+
+	void writeStartPage(Page page) throws IOException;
+
+	void writeEndPage() throws IOException;
+
+	void writeRevision(Revision revision) throws IOException;
 }

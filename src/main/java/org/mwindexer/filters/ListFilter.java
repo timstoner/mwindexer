@@ -23,20 +23,44 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-import java.util.Hashtable;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 
-public class Page {
-	public Title Title;
-	public int Id;
-	public boolean isRedirect = false;
-	public Hashtable<String, Object> DiscussionThreadingInfo;
-	public String Restrictions;
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
 
-	public Page() {
-		// <restrictions> is optional...
-		Restrictions = "";
-		DiscussionThreadingInfo = new Hashtable<String, Object>();
+public class ListFilter extends PageFilter {
+	protected HashMap<String, String> list;
+
+	public ListFilter(DumpWriter sink, String sourceFileName)
+			throws IOException {
+		super(sink);
+		list = new HashMap<String, String>();
+		BufferedReader input = new BufferedReader(new InputStreamReader(
+				new FileInputStream(sourceFileName), "utf-8"));
+
+		String line;
+		while ((line = input.readLine()) != null) {
+			if (!line.startsWith("#")) {
+				String title = line.trim();
+				title = title.replace("_", " ");
+				if (title.startsWith(":"))
+					title = line.substring(1);
+
+				if (title.length() > 0)
+					list.put(title, title);
+			}
+		}
+		input.close();
+	}
+
+	protected boolean pass(Page page) {
+		return list.containsKey(page.Title.subjectPage().toString())
+				|| list.containsKey(page.Title.talkPage().toString());
 	}
 }

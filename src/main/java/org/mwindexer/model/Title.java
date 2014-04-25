@@ -23,7 +23,9 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.model;
+
+import org.mwindexer.indexer.NamespaceSet;
 
 public class Title {
 	public Integer Namespace;

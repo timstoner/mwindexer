@@ -23,21 +23,17 @@
  * $Id$
  */
 
-package org.mwindexer.indexer;
+package org.mwindexer.filters;
 
-import java.util.Calendar;
+import org.mwindexer.DumpWriter;
+import org.mwindexer.model.Page;
 
-public class Revision {
-	public int Id;
-	public Calendar Timestamp;
-	public Contributor Contributor;
-	public String Comment;
-	public String Text;
-	public boolean Minor;
+public class NotalkFilter extends PageFilter {
+	public NotalkFilter(DumpWriter sink) {
+		super(sink);
+	}
 
-	public Revision() {
-		Comment = "";
-		Text = "";
-		Minor = false;
+	protected boolean pass(Page page) {
+		return !page.Title.isTalk();
 	}
 }
