@@ -41,13 +41,16 @@ import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
 import org.mwindexer.model.Title;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class XmlDumpReader extends DefaultHandler {
-	InputStream input;
-	DumpWriter writer;
+
+	@Autowired
+	private InputStream inputStream;
+	private DumpWriter dumpWriter;
 
 	private char[] buffer;
 	private int len;
@@ -81,7 +84,7 @@ public class XmlDumpReader extends DefaultHandler {
 	 *            Stream to read XML from
 	 */
 	public void setInputStream(InputStream input) {
-		this.input = input;
+		this.inputStream = input;
 	}
 
 	/**
@@ -91,7 +94,7 @@ public class XmlDumpReader extends DefaultHandler {
 	 *            a dump write to handle events
 	 */
 	public void setDumpWriter(DumpWriter writer) {
-		this.writer = writer;
+		this.dumpWriter = writer;
 	}
 
 	/**
@@ -106,13 +109,13 @@ public class XmlDumpReader extends DefaultHandler {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			SAXParser parser = factory.newSAXParser();
 
-			parser.parse(input, this);
+			parser.parse(inputStream, this);
 		} catch (ParserConfigurationException e) {
 			throw (IOException) new IOException(e.getMessage()).initCause(e);
 		} catch (SAXException e) {
 			throw (IOException) new IOException(e.getMessage()).initCause(e);
 		}
-		writer.close();
+		dumpWriter.close();
 	}
 
 	/**
@@ -299,11 +302,11 @@ public class XmlDumpReader extends DefaultHandler {
 
 	void openMediaWiki() throws IOException {
 		siteinfo = null;
-		writer.writeStartWiki();
+		dumpWriter.writeStartWiki();
 	}
 
 	void closeMediaWiki() throws IOException {
-		writer.writeEndWiki();
+		dumpWriter.writeEndWiki();
 		siteinfo = null;
 	}
 
@@ -314,7 +317,7 @@ public class XmlDumpReader extends DefaultHandler {
 	}
 
 	void closeSiteinfo() throws IOException {
-		writer.writeSiteinfo(siteinfo);
+		dumpWriter.writeSiteinfo(siteinfo);
 	}
 
 	private String bufferContentsOrNull() {
@@ -369,7 +372,7 @@ public class XmlDumpReader extends DefaultHandler {
 
 	void closePage() throws IOException {
 		if (pageSent)
-			writer.writeEndPage();
+			dumpWriter.writeEndPage();
 		page = null;
 	}
 
@@ -402,7 +405,7 @@ public class XmlDumpReader extends DefaultHandler {
 
 	void openRevision() throws IOException {
 		if (!pageSent) {
-			writer.writeStartPage(page);
+			dumpWriter.writeStartPage(page);
 			pageSent = true;
 		}
 
@@ -410,7 +413,7 @@ public class XmlDumpReader extends DefaultHandler {
 	}
 
 	void closeRevision() throws IOException {
-		writer.writeRevision(rev);
+		dumpWriter.writeRevision(rev);
 		rev = null;
 	}
 

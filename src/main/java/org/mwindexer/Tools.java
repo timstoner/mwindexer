@@ -42,26 +42,6 @@ public class Tools {
 		return new BZip2CompressorInputStream(infile);
 	}
 
-	static OutputStream openStandardOutput() {
-		return new BufferedOutputStream(System.out, OUT_BUF_SZ);
-	}
-
-	static OutputStream createBZip2File(String param) throws IOException,
-			FileNotFoundException {
-		OutputStream outfile = createOutputFile(param);
-		// bzip2 expects a two-byte 'BZ' signature header
-		outfile.write('B');
-		outfile.write('Z');
-		return new BZip2CompressorOutputStream(outfile);
-	}
-
-	static OutputStream createOutputFile(String param) throws IOException,
-			FileNotFoundException {
-		File file = new File(param);
-		file.createNewFile();
-		return new BufferedOutputStream(new FileOutputStream(file), OUT_BUF_SZ);
-	}
-
 	private static final TimeZone utc = TimeZone.getTimeZone("UTC");
 
 	public static Calendar parseUTCTimestamp(String text) {

@@ -28,12 +28,12 @@ public class SolrDumpWriter implements DumpWriter {
 
 	private int bufferSize;
 
-	public SolrDumpWriter(int bufferSize, String location, String solrType) {
+	public SolrDumpWriter(int bufferSize, String type, String location) {
 		LOG.info("SolrDumpWriter init");
 		this.bufferSize = bufferSize;
 		solrInputDocuments = new LinkedList<>();
 
-		switch (solrType) {
+		switch (type) {
 		case "http":
 			solrServer = new HttpSolrServer(location);
 			break;

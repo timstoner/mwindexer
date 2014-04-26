@@ -88,6 +88,6 @@ public class MultiWriter implements DumpWriter {
 	}
 
 	public void addWriters(List<DumpWriter> writers) {
-
+		sinks.addAll(writers);
 	}
 }

@@ -26,15 +26,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Indexer {
+public class Main {
 
-	private static Logger LOG = LoggerFactory.getLogger(Indexer.class);
+	private static Logger LOG = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		new Indexer(args);
+		new Main(args);
 	}
 
-	public Indexer(String[] args) {
+	public Main(String[] args) {
 		LOG.info("MediaWiki Dump File Indexer");
 
 		// create a new spring configuration component
@@ -76,7 +76,8 @@ public class Indexer {
 		// instantiate the application context using a classpath
 		// applicationContext.xml file
 		LOG.debug("Initializing Application Context");
-		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext()) {
+		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext(
+				"applicationContext.xml")) {
 			// get the configured dump reader
 			XmlDumpReader reader = context.getBean("xmlReader",
 					XmlDumpReader.class);

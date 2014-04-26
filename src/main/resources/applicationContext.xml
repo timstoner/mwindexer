@@ -7,18 +7,10 @@
 
 	<context:component-scan base-package="org.mwindexer" />
 
-	<bean id="xmlReader" class="org.mwindexer.indexer.XmlDumpReader">
-		<property name="writers">
-			<list>
-				<ref bean="progressFilter" />
-			</list>
-		</property>
-	</bean>
-
 	<bean id="solrWriter" class="org.mwindexer.indexer.SolrDumpWriter">
 		<constructor-arg name="location" value="${solr.location}" />
 		<constructor-arg name="type" value="${solr.type}" />
-		<constructor-arg name="buffersize" value="${solr.buffersize}" />
+		<constructor-arg name="bufferSize" value="${solr.buffersize}" />
 	</bean>
 
 	<!-- Filters 'decorate' dump writers -->
@@ -26,4 +18,18 @@
 		<constructor-arg name="sink" ref="solrWriter" />
 		<constructor-arg name="interval" value="${progress.interval}" />
 	</bean>
+
+	<bean id="multiWriter" class="org.mwindexer.indexer.MultiWriter">
+		<property name="writers">
+			<list>
+				<bean ref="solrWriter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="xmlReader" class="org.mwindexer.indexer.XmlDumpReader">
+		<property name="dumpWriter" ref="multiWriter" />
+	</bean>
+
+
 </beans>
