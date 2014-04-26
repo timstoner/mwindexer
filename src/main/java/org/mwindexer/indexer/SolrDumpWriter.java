@@ -3,7 +3,6 @@ package org.mwindexer.indexer;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -11,6 +10,7 @@ import org.apache.solr.client.solrj.impl.CloudSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.SolrInputField;
 import org.mwindexer.DumpWriter;
 import org.mwindexer.TextIndexer;
 import org.mwindexer.model.Page;
@@ -114,10 +114,9 @@ public class SolrDumpWriter implements DumpWriter {
 		doc.addField(fieldMap.getTextField(), revision.Text);
 
 		for (TextIndexer indexer : textIndexers) {
-			Map<String, Object> fields = indexer.indexText(revision.Text);
-
-			for (Map.Entry<String, Object> field : fields.entrySet()) {
-				doc.addField(field.getKey(), field.getValue());
+			List<SolrInputField> fields = indexer.indexText(revision.Text);
+			for (SolrInputField field : fields) {
+				doc.put(field.getName(), field);
 			}
 		}
 	}
