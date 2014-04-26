@@ -3,6 +3,7 @@ package org.mwindexer.indexer;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -11,6 +12,7 @@ import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.mwindexer.DumpWriter;
+import org.mwindexer.TextIndexer;
 import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
@@ -28,6 +30,10 @@ public class SolrDumpWriter implements DumpWriter {
 
 	private int bufferSize;
 
+	private SolrFieldMap fieldMap;
+
+	private List<TextIndexer> textIndexers;
+
 	public SolrDumpWriter(int bufferSize, String type, String location) {
 		LOG.info("SolrDumpWriter init");
 		this.bufferSize = bufferSize;
@@ -41,6 +47,14 @@ public class SolrDumpWriter implements DumpWriter {
 			solrServer = new CloudSolrServer(location);
 			break;
 		}
+	}
+
+	public void setSolrFieldMap(SolrFieldMap map) {
+		this.fieldMap = map;
+	}
+
+	public void setTextIndexers(List<TextIndexer> indexers) {
+		this.textIndexers = indexers;
 	}
 
 	@Override
@@ -71,10 +85,10 @@ public class SolrDumpWriter implements DumpWriter {
 	@Override
 	public void writeStartPage(Page page) throws IOException {
 		doc = new SolrInputDocument();
-		doc.addField("id", page.Id);
-		doc.addField("title", page.Title.Text);
-		doc.addField("redirect_b", page.isRedirect);
-		doc.addField("restrictions_t", page.Restrictions);
+		doc.addField(fieldMap.getPageIdField(), page.Id);
+		doc.addField(fieldMap.getTitleField(), page.Title.Text);
+		doc.addField(fieldMap.getRedirectField(), page.isRedirect);
+		doc.addField(fieldMap.getRestrictionsField(), page.Restrictions);
 	}
 
 	@Override
@@ -95,9 +109,17 @@ public class SolrDumpWriter implements DumpWriter {
 
 	@Override
 	public void writeRevision(Revision revision) throws IOException {
-		doc.addField("timestamp_dt", revision.Timestamp);
-		doc.addField("comment_t", revision.Comment);
-		doc.addField("content", revision.Text);
+		doc.addField(fieldMap.getTimestampField(), revision.Timestamp);
+		doc.addField(fieldMap.getCommentField(), revision.Comment);
+		doc.addField(fieldMap.getTextField(), revision.Text);
+
+		for (TextIndexer indexer : textIndexers) {
+			Map<String, Object> fields = indexer.indexText(revision.Text);
+
+			for (Map.Entry<String, Object> field : fields.entrySet()) {
+				doc.addField(field.getKey(), field.getValue());
+			}
+		}
 	}
 
 }

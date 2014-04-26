@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="fieldMap" class="org.mwindexer.indexer.SolrFieldMap">
+		<!-- Match xml dump data with solr schema field -->
+		<property name="titleField" value="title_t" />
+		<property name="namespaceField" value="namespace_i" />
+		<property name="pageIdField" value="pageid_i" />
+		<property name="revisionIdField" value="revisionid_i" />
+		<property name="parentIdField" value="parentid_i" />
+		<property name="contributorUsernameField" value="contributorusername_s" />
+		<property name="contributorIdField" value="contributorid_i" />
+		<property name="redirectField" value="redirect_b" />
+		<property name="restrictionsField" value="restrictions_t" />
+		<property name="timestampField" value="timestamp_dt" />
+		<property name="commentField" value="comment_t" />
+		<property name="textField" value="text_t" />
+		<property name="modelField" value="model_s" />
+		<property name="formatField" value="format_s" />
+	</bean>
+
+</beans>
