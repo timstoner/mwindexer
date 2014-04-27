@@ -52,7 +52,7 @@ public class ExactListFilterTest {
 
 		assertEquals(true, writer.isPagePassed());
 	}
-	
+
 	@Test
 	public void testTalkPagePermitted() {
 		Page page = new Page();

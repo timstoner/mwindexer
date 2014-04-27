@@ -1,0 +1,400 @@
+{{Infobox settlement
+|name                     = Utica  
+|settlement_type          = [[City (New York)|City]]
+|nickname                 = Handshake City, Renaissance City, Second Chance City
+|motto                    =
+|image_skyline            = Utica 97 002.jpg
+|imagesize                = 250px
+|image_caption            = Looking south on Utica's Genesee Street
+|image_flag               =
+|image_seal               =
+|coordinates_region       = US-NY
+|subdivision_type         = [[List of countries|Country]]
+|subdivision_name         = [[United States]]
+|subdivision_type1        = [[US state|State]]
+|subdivision_name1        = [[New York]]
+|subdivision_type2        = [[List of counties in New York|County]]
+|subdivision_name2        = [[Oneida County, New York|Oneida]]
+|government_type          = [[mayor-council government|Mayor-Council]]
+|leader_title             = [[Mayor]]
+|leader_name              = Robert M. Palmieri ([[United States Democratic Party|D]])
+| leader_title1           = [[city council|Common Council]]
+| leader_name1            = {{Collapsible list
+ |title       = Members' List
+ |frame_style = border:none; padding: 0;
+ |title_style = <!-- (optional) -->
+ |list_style  = text-align:left;display:none;
+ |1           = President:
+ |2           = • Frank Meola ([[United States Democratic Party|D]])
+ |3           = At-Large Members:
+ |4           = • Jack LoMedico ([[United States Democratic Party|D]])
+ |5           = • Edward T. Bucciero ([[United States Democratic Party|D]])
+ |6           = • Mark Williamson([[United States Republican Party|R]])
+ |7           = • D1: Frank X. Vescera ([[United States Democratic Party|D]])
+ |8           = • D2: David L. Testa ([[United States Democratic Party|D]])
+ |9           = • D3: Jason Flemma ([[United States Republican Party|R]])
+ |10           = • D4: Joseph A. Marino ([[United States Democratic Party|D]])
+ |11           = • D5: Jerome P. McKinsey, Sr. ([[United States Democratic Party|D]])
+ |12           = • D6: Samantha Colosimo-Testa ([[United States Republican Party|R]])
+}}
+|established_title        = Incorporated
+|established_date         = 1832
+|area_magnitude           =
+|area_total_km2           = 43.0
+|area_total_sq_mi         = 16.6
+|area_land_km2            = 42.3
+|area_land_sq_mi          = 16.3
+|area_water_km2           = 0.7
+|area_water_sq_mi         = 0.3
+|area_water_percent       =
+|area_urban_km2           =
+|area_urban_sq_mi         =
+|area_metro_km2           =
+|area_metro_sq_mi         =
+|population_as_of         = 2010
+|population_note          =
+|population_total         = 62235
+|population_density_km2   = 1471.3
+|population_density_sq_mi = 3818.1
+|population_metro         =
+|population_density_metro_km2     =
+|population_density_metro_sq_mi   =
+|population_urban                 =
+|timezone                 = [[Eastern Time Zone|Eastern (EST)]]
+|utc_offset               = -5
+|timezone_DST             = EDT
+|utc_offset_DST           = -4
+|pushpin_map = New York
+|latd = 43 |latm = 5 |lats = 48 |latNS = N
+|longd = 75 |longm = 13 |longs = 55 |longEW = W
+|elevation_m              = 139
+|elevation_ft             = 456
+|website                  =
+|postal_code_type         = [[ZIP code]]s
+|postal_code              = 13500-13599
+|area_code                = [[Area code 315|315]]
+|blank_name               = [[Federal Information Processing Standard|FIPS code]]
+|blank_info               = 36-76540
+|blank1_name              = [[Geographic Names Information System|GNIS]] feature ID
+|blank1_info              = 0968324
+|footnotes                =
+}}
+'''Utica''' {{IPAc-en|ˈ|j|uː|t|ɨ|k|ə}} is a [[City (New York)|city]] in the Mohawk Valley and the [[county seat]] of [[Oneida County, New York|Oneida County]], [[New York]], [[United States]].{{GR|6}}  The population was 62,235 at the [[2010 United States Census|2010 census]], an increase of 2.6% from the [[2000 United States Census|2000 census]] due largely to a large immigrant refugee influx.{{citation needed|date=July 2013}}
+
+Utica and the neighboring city of [[Rome, New York|Rome]] are principal cities of the [[Utica-Rome metropolitan area|Utica&ndash;Rome, New York Metropolitan Statistical Area]], which includes Oneida and [[Herkimer County, New York|Herkimer]] counties.
+
+==History==
+
+===Early history===
+Utica is located at the shallowest spot along the [[Mohawk River]] which made it the best place for fording across, and an [[Iroquois]] Indian crossroads and fording location made trade exceedingly easy for local merchants. With a shallow spot on the river that was already inhabited by trading partners, the location was ideal for a settlement.<ref name="Clarke">Clarke, T. W. (1952). Utica for a Century and a Half. Utica N.Y.: Widtman Press.</ref>
+
+Utica was first settled by Europeans in 1773, on the site of [[Old Fort Schuyler|Fort Schuyler]] which was built in 1758. The fort was named Fort Schuyler after [[Philip Schuyler|Col. Philip Schuyler]], a hero of the [[French and Indian War]]. After the French and Indian War the fort was abandoned and then during the [[American Revolution]] the original settlement (''Yunę́ʼnare·θ''<ref>Rudes, B. ''Tuscarora English Dictionary'' Toronto: University of Toronto Press, 1999</ref> in [[Tuscarora language|Tuscarora]]) was destroyed by [[Loyalist (American Revolution)|Tories]] and [[Native Americans in the United States|Native Americans]]. The settlement eventually became known as Old Fort Schuyler when a military fort in nearby [[Fort Stanwix]] in [[Rome, New York]] was renamed Fort Schuyler during the American Revolution and evolved into a village.
+
+In 1794, a state road was built east-southeast from Utica to [[Albany, New York]]. By 1797 the road was extended west to the [[Genesee River]], which demarcates the "Genesee Country" of Western New York, and the entire road was thereafter called Genesee Road. The creation of the [[Seneca Turnpike]] was the first significant factor in the growth and development of Utica, as this small settlement became the resting and relocating area on the [[Mohawk River]] for goods and people moving into Western New York and past the Great Lakes.<ref name="Przybycien">Przybycien, F. E. (1976). Utica: A City Worth Saving. Utica : Dodge-Graphic Press, Inc.</ref>
+
+Moses Bagg, a blacksmith, built a small tavern near Old Fort Schuyler to accommodate weary travelers waiting for their horse's shoes to be repaired. After just a few years this small shanty tavern became a two story inn and pub known as [[Bagg's Hotel]]. The first bridge over the [[Mohawk River]] was erected in the summer of 1792 by a Long Island carpenter who had settled in Utica, Apollos Cooper, although local and regional architects that had seen the bridge were very skeptical to use it, and the bridge was soon destroyed in the spring floods.<ref name="Tomaino">Tomaino, F. (2008, May 29). [http://www.uticaod.com/history/x244767716/This-Week-in-History-A-bridge-to-Deerfield "This Week in History: A bridge to Deerfield"]. Retrieved 2010-03-25, ''[[Observer-Dispatch]]''</ref>
+
+The perhaps apocryphal account of Utica's naming suggests that around a dozen citizens of the Old Fort Schuyler settlement met at the [[Bagg's Tavern]] to discuss the name of the emerging village.  Unable to settle on one particular name, Erastus Clark's entrant of "Utica" was drawn from several suggestions, and the village thereafter became associated with [[Utica, Tunisia]], the ancient [[Carthage|Carthaginian]] city.{{Citation needed|date=July 2013}}
+
+Utica was incorporated as a village in 1798. Utica expanded its borders in subsequent charters in 1805 and 1817.<ref>["Utica." from The History of Oneida County; Oneida County Historical Society, 1977]</ref> Expansion and growth continued to occur in Utica; by 1817 the population had reached 2,860 people. Genesee Street was packed with shops and storefronts, a prosperous stagecoach line had expanded its business, a fully established bank was founded by Alexander Johnson, a newspaper company [[The Observer-Dispatch|The Utica Observer]] established by William McLean, five churches as well as two hotels were all located within this center square of Utica.<ref name="Clarke" />
+Suffering from poor harvests in 1789 and 1802 and dreaming of land ownership, the initial settlement of five Welsh families soon attracted other agricultural migrants, settling Steuben, Utica and Remsen townships. Adapting their traditional agricultural methods, the Welsh became the first to introduce dairying into the region and Welsh butter became a valued commodity on the New York market. Drawing on the size of the local ethnic community and the printing industry of Utica became the cultural center of Welsh-American life by 1830. The Welsh-American publishing industry included 19 different publishers who published 240 Welsh language imprints, 4 denominational periodicals and the influential newspaper [[Y Drych]].{{Citation needed|date=July 2013}}
+
+However, the Welsh community in Utica was never very large and was often dwarfed by other ethnicities, most notably the Polish and Italians. The largest nationality group of the great migration to America between 1880 and 1920, Italians trace their presence in Utica to the arrival of Dr. John B. Marchisi in 1817. A prosperous pharmacist, he was the first of thousands of Italians to arrive in Oneida County over the next century.{{Citation needed|date=July 2013}}
+
+===Industrial era===
+[[File:Utica NY c1909 LOC pan 6a14200.jpg|thumb|right|600px|1909 panorama]]
+Utica's location on the [[Erie Canal]] stimulated its industrial development. The middle section of the Canal, from [[Rome, New York|Rome]] to [[Salina, New York|Salina]], was the first portion to open in 1820. The [[Chenango Canal]], connecting Utica and [[Binghamton]], opened in 1836, and provided a further stimulus for economic development by providing water transportation of [[coal]] from Northeast Pennsylvania. Utica’s population with the creation of the canals began to skyrocket. The population began to increase threefold over a span of ten years since the first section of the canal opened in 1819. Utica was the virtual half-way point for canal travelers, thus making the town the perfect stop-over point. During the planning stage of the canal the cotton looms that would make Utica famous were in their infancy,  and a vigorous real estate market in the town had ballooned lot prices tenfold since 1800.{{Citation needed|date=July 2013}}  An anonymous traveler noted that by 1829, about five years after the canal's completion, Utica had become "a really beautiful place . . . [and Utica's State Street] in no respect inferior to [[Broadway (New York City)|Broadway]] in New York."  Utica, along with other burgeoning towns such as Syracuse, would benefit from the fact that the Erie Canal ran directly through town.<ref>''Wedding of the Waters'', by Peter Bernstein, 2005.</ref>
+
+By the late 19th century, Utica had become a transportation hub and a commercial center of considerable note, but was not like the heavy industrial towns in [[New England]]. Utica, in particular, was limited in its capability to produce industrial goods because the Mohawk River did not run fast enough to turn the industrial machines. Upon investigating the New England style of steam production, they found how to use coal in their manufacturing. Now with the recently completed [[Chenango Canal]] that connected Utica to the coal field in Pennsylvania, there was a vast supply readily available. Because of the [[Embargo Act of 1807]] that cut off the English textile production, the Northeast had a firm grasp on the textile industry. With investments from local entrepreneurs Utica’s textile industry was starting to really take off.<ref name="Cookingham">Cookinham, H. J. (1912). History of Oneida County N.Y. Chicago: SJ Clarke Publishing Company</ref>
+
+[[File:UticaNY 1855.jpg|thumb|right|Bird's-eye view of Utica in 1855]]
+The city still served as a Northeast crossroads, hosting the day's most celebrated personalities.  [[Samuel Clemens]]  lectured to a sold-out Utica crowd in 1870, where Clemens noted in personal correspondence that he brought down the house "like an avalanche."<ref>Mark Twain: A Life, by Ron Powers, 2005.</ref> It was during this time that Utica hosted the 1884 New York State Republican Convention, an event covered in great detail in Edmund Morris' Pulitzer Prize winning biography The Rise of [[Theodore Roosevelt]], in which Morris describes Utica at this time as "a shabby canal-town in the middle of the Mohawk Valley.".<ref>The Rise of Theodore Roosevelt, by Edmund Morris, 1979</ref>  Senator [[Roscoe Conkling]], a leading GOP lawmaker of the Stalwart political faction, resided in the city at this time, and figured as the region's most historically significant politician until local native [[James Schoolcraft Sherman]] was elected the 27th Vice President of the United States, serving under President [[William Howard Taft]].
+
+Centered around the parishes of St. Mary of Mount Carmel and St. Anthony of Padua, Italian life and culture flourished, spreading throughout the county to cities, towns and small villages alike. While the immigrants arriving in the great migration usually found jobs in the local textile mills, brickyards, construction companies and unskilled manufacturing occupations, numerous entrepreneurs soon began small businesses running the spectrum of economic activity from push-cart peddlers and olive oil merchants to haberdashers, bankers and insurance agents. Italian language newspapers such as Il Pensiero Italiano, La Luce, and Il Messagero dell'Ordine, along with the humorous Il Pagliaccio and various organizational and cultural publications reflected the richness of Italian life in Oneida County.{{Citation needed|date=July 2013}}
+
+The Italian community rapidly grew to political prominence, forming an important voting block in elections as early as 1888. By 1910 Italians were being regularly elected to office in Utica, while some historians credit the East Utica Italian community as the spark that ignited Franklin D. Roosevelt's campaign for governor of New York in 1928.{{Citation needed|date=July 2013}} From the early 1940s the Italian community has played a dominant role in Utica and area politics.
+
+In the 1930s through the 1950s Utica became nationally if not internationally known as "Sin City" for the extent of its corruption and control by the political machine of Rufus P. Elefante.<ref>''In Gotham's Shadow,'' Alexander R Thomas, State University of New York Press, 2003</ref><ref>[http://www.utica.edu/test/sincity.cfm "The Sin City Scandals" at Utica College]</ref><ref>[http://www.mvcc.edu/academics/library/mohawk_valley.pdf ''Guts and Glory, Tragedy and Triumph: The Rufus P. Elefante Story,'' Nancy Kobryn, Mohawk Valley Community College Library Collection]{{dead link|date=July 2013}}</ref> Utica, from the turn of the 20th century, had an [[organized crime]] presence, largely made up of the [[Italian mafia]]. The mafia presence was largely eliminated in the 1990s by federal indictments and convictions.<ref name="uticaod.com">[http://www.uticaod.com/mobfiles/x407217072/DAY-1-The-Mob-Files The Mob Files - The Observer-Dispatch, Utica, New York<!-- Bot generated title -->]</ref>
+
+By the mid-20th century, virtually all of the textile mills closed and migrated to the American South. In the wake of the demise of the textile industry, Utica became a major player in the tool and die industry, which thrived in the late 19th and early 20th centuries, eventually declining in the late 20th century.{{Citation needed|date=July 2013}} In the early and mid-20th century, Utica had become a major manufacturing center for radios, manufactured by the [[General Electric]] company, which, at one time, employed some 8,000 workers there, and was once known as: "The radio capital of the world." However, by the mid-1960s, General Electric had moved its radio manufacturing to the Far East. In the early 1990s, GE's Light Military Electronics operation in Utica was sold to [[Lockheed Martin]] and soon closed altogether.{{Citation needed|date=July 2013}} Like the textile industry before it, the machine tool industry largely forsook Utica for the American South, with one notable example being The Chicago Pneumatic Company, which shuttered its extensive manufacturing facility in Utica in 1997 and relocated to [[Rock Hill, South Carolina]].{{Citation needed|date=July 2013}}
+
+===Post-industrial era===
+Like many industrial towns and cities in the northeastern [[Rust Belt]], Utica has experienced a major reduction in manufacturing activity in the past several decades, and is in serious financial trouble; many public services have been curtailed to save money.{{Citation needed|date=July 2013}} Suburban Utica, particularly the town of New Hartford and the village of Whitesboro, have begun to experience [[suburban sprawl]]; this is common in many [[New York State]] cities, which are suffering from what the [[Sierra Club]] termed "sprawl without growth."{{Citation needed|date=July 2013}} The city's economy is heavily dependent on commercial growth in its suburbs, a trend that is characterized by development of green sites in neighboring villages and does little to revitalize the city itself. Because of the decline of industry and employment in the post-World War II era, Utica became known as "The City that God Forgot." In the 1980s and early 1990s, some of Utica's residents could be seen driving cars with bumper stickers that read "Last One Out of Utica, Please Turn Out The Lights," clearly taking a more humorous stand on their city's rapid population loss and continued economic struggles.{{Citation needed|date=July 2013}}
+
+[[File:Utica Railroad Station.jpg|thumb|left|Boehlert Center at Union Station]]
+City leaders and local entrepreneurs tried to build on the city's losses.  In 1997 the former GE-Lockheed facility was purchased by  ConMed Corporation (founded by Utica local Eugene Corasanti) for use as a manufacturing facility and the company's worldwide headquarters, bringing 500 new jobs to the area.<ref>{{cite news| url=http://findarticles.com/p/articles/mi_qa3718/is_199709/ai_n8778401 | work=CNY Business Journal | title=ConMed creates jobs for Oneida County | year=1997}}</ref>  The Boehlert Center at the newly restored, historic [[Union Station (Utica, New York)|Union Station]] in downtown Utica is a regional transportation hub for [[Amtrak]] and the [[Adirondack Scenic Railway]]. Next door to Union Station is The Children's Museum of History, Science & Technology, a 5 story building built in the 1890s. Downtown Utica continues to be the focus of regional economic revitalization efforts. In 2010, Roefaro fulfilled a campaign promise and delivered the City's first Comprehensive Master Plan in over 50 years.<ref>[http://www.uticamasterplan.org/ City of Utica Master Plan]. Uticamasterplan.org. Retrieved on 2013-08-23.</ref>
+
+The arrival of a large number of [[Bosnia and Herzegovina|Bosnia]]n immigrants over the past several years has stanched a population loss that had been steady for more than three decades.<ref>{{cite news |title=Looking to Prosper as a Melting Pot; Utica, Long in Decline, Welcomes an Influx of Refugees |work=The New York Times |first=Paul |last=Zielbauer |url=http://query.nytimes.com/gst/fullpage.html?res=9E0CE3DD1E3CF934A35756C0A96F958260 |date=1999-05-07 }}</ref> Bosnian immigrants now constitute about 10% of the total population of Utica.  Other recent immigrant groups have arrived from [[Somalia]], [[Thailand]], [[Burma]], and [[Iraq]]. This influx of refugees from many war-torn nations and politically oppressive regimes has drawn mainstream national media attention, from The New York Times (see citation above) to Reader's Digest.  Reader's Digest dubbed Utica the "Second Chance City" in an article chronicling the crucial role that immigrants have traditionally played in invigorating Utica's political, economic, and social life; the article argues that Utica now hosts thousands of immigrants that have taken advantage of the city's social services benefits, welfare, public and private sector affordable housing, and entry-level skilled manufacturing jobs to start a new life, a trend that began nearly thirty years ago.<ref>"Second Chance City," Reader's Digest, August 2007, pp. 116-123.</ref> In a cover story in their 2005 REFUGEES Magazine, the [[United Nations High Commission on Refugees]] wrote an extensive article on refugees in Utica, titling the publication, "The Town That Loves Refugees".<ref>[http://www.unhcr.org/publ/PUBL/426f4c772.pdf Refugees Volume 1 Number 138 2005]</ref>
+
+==Geography and climate==
+{{climate chart
+|[[Utica, NY|Utica]]
+|13|32|2.76
+|15|35|2.19
+|24|44|3.19
+|34|57|3.58
+|44|71|3.53
+|53|79|4.17
+|58|83|3.85
+|57|81|3.69
+|49|73|4.40
+|39|61|3.36
+|31|48|4.06
+|20|36|3.12
+|source=Weather.com / NWS
+|float=left
+|clear=left
+|units=imperial
+}}
+The [[Erie Canal]], the [[Mohawk River]], and the [[New York State Thruway]] pass through the north part of the city. The city is adjacent to the border of [[Herkimer County, New York]].
+
+Utica is located in the [[Mohawk River]] Valley region of New York State.
+
+According to the [[United States Census Bureau]], the city has a total area of {{convert|16.6|sqmi|km2}}, of which, {{convert|16.4|sqmi|km2}} is land and {{convert|0.3|sqmi|km2}} (1.57%) is water.
+
+Utica has a [[humid continental climate]], which is characterized by cold winters and moderate summers.
+
+Daytime highs during the summer are generally between 75 °F (24 °C) and 85 °F (29 °C), with some days not reaching 70 °F (21 °C) being common. Summer nights usually bottom out somewhere between 50 °F (10 °C) and 60 °F (16 °C). The all-time highest recorded temperature for the city was 100 °F (38 °C), which occurred on July 19, 1953.
+
+Winters in Utica are very cold and [[snow]]y, as the area is susceptible to [[Lake effect snow]] from the [[Great Lakes]] to the west. An example of typical wintertime snowfall amounts is presented below. Daytime highs during the wintertime are typically observed at or just above freezing (32 °F to 35 °F/0 °C to 2 °C), with some days not reaching 25 °F (-4 °C). Winter nights will see temperatures drop to settle between 10 °F (-12 °C) and 20 °F (-7 °C). Temperatures in the single digits or below zero are not uncommon for winter nights in Utica. The all time lowest recorded temperature in the city was -28 °F (-33 °C), which occurred once on February 18, 1979 and again on January 12, 1981.
+{{-}}
+
+== Demographics ==
+{{US Census population
+|1820=2972
+|1830=8323
+|1840=12782
+|1850=17565
+|1860=22529
+|1870=28804
+|1880=33914
+|1890=44007
+|1900=56383
+|1910=74419
+|1920=94156
+|1930=101740
+|1940=100518
+|1950=100489
+|1960=100410
+|1970=91611
+|1980=75632
+|1990=68637
+|2000=60651
+|2010=62235
+|estyear=2012
+|estimate=61822
+}}
+According to the 1930 census, the population of the city was 101,740. By [[2010 United States Census|2000]] the population was down to 60,651. As of the 2010 census, the population has risen to 62,235.  Thus the population gain since 2000 has represented a reversal of many decades of population decline.
+
+As of the 2000 census, the [[population density]] was 3,710.0 people per square mile (1,432.3/km²). There were 29,186 housing units at an average density of 1,785.3 per square mile (689.2/km²). As of the 2010 census, the [[Race (United States Census)|racial makeup]] of the city was 69.0% [[Race and ethnicity in the United States Census|White]], 15.3% [[African American]], 0.3% [[Native Americans in the United States|Native American]], 7.4% [[Asian American|Asian]], 0.1% [[Pacific Islander]], 3.9% from other races, and 4.0% from two or more races. [[Hispanic]] or [[Latino]] of any race were 10.5% of the population.
+
+There were 25,100 households out of which 27.0% had children under the age of 18 living with them, 35.5% were [[marriage|married couples]] living together, 16.9% had a female householder with no husband present, and 43.3% were non-families. 37.4% of all households were made up of individuals and 15.5% had someone living alone who was 65 years of age or older. The average household size was 2.28 and the average family size was 3.04.
+
+In the city the population was spread out with 24.1% under the age of 18, 10.0% from 18 to 24, 26.8% from 25 to 44, 20.2% from 45 to 64, and 18.8% who were 65 years of age or older. The median age was 37 years. For every 100 females there were 88.7 males. For every 100 females age 18 and over, there were 84.3 males.
+
+The median income for a household in the city was $24,916, and the median income for a family was $33,818. Males had a median income of $27,126 versus $21,676 for females. The [[per capita income]] for the city was $15,248. About 19.8% of families and 24.5% of the population were below the [[poverty line]], including 38.0% of those under age 18 and 12.1% of those age 65 or over.
+
+==Government==
+The city government consists of a mayor who is elected [[At-large|at large]]. The Common Council consists of nine members. Six are elected from single member wards. The other three are elected at large.
+
+==Arts, history, and culture==
+*The [[Boilermaker Road Race]] is run in association with the [[National Distance Running Hall of Fame]], also located in Utica.
+*[[Munson-Williams-Proctor Arts Institute]] &mdash; The Munson-Williams-Proctor Arts Institute Museum of Art, built in 1960, features a permanent collection, rotating exhibitions and community art education. The Institute also hosts a 2-year art college.
+*[[Utica Memorial Auditorium]] &mdash; The Utica Memorial Auditorium, or AUD is a 4,000 seat multi-purpose arena (circa 1959). Beginning in 2013-14, the arena will host the [[American Hockey League]]'s [[Utica Comets]].
+*[[Stanley Theater (Utica, New York)|Stanley Theater]] &mdash;  A fully restored 2,945 seat Mexican-baroque movie palace, built in 1928.
+*[[Utica Parks and Parkway Historic District|Parks System]] &mdash; Utica is home to a series of parks designed by [[Frederick Law Olmsted]].<ref name="New York Times">New York Times. (1907, June 23). Gives Utica Four Parks. p. S5.</ref> [[Utica Zoo|The Utica Zoo]] is located in one of these parks.
+*[[Children's Museum of Utica, New York|The Children's Museum]]
+*[[Utica Public Library]]
+*[[Hotel Utica|The Hotel Utica]]
+
+==Sports teams==
+
+===Defunct teams===
+The [[Utica Devils]] were a member of the [[American Hockey League]] (AHL) from 1987-1993.
+The [[Utica Bulldogs]] 1993-1994 and The [[Utica Blizzard]] 1994–1997 were members of the [[United Hockey League]] (UHL), and another stint from 1998-2001 (January) in which the team was called the [[Mohawk Valley Prowlers]].
+
+Utica was also the home of the [[Utica Blue Jays]]/Blue Sox A-class baseball team, with their last affiliation being with the [[Florida Marlins]] until 2001.
+
+===Present and future===
+The [[Utica Comets]], an affiliate of the [[National Hockey League]]'s [[Vancouver Canucks]], began playing in the [[American Hockey League]] in the [[2013-14 AHL season]], with home games at the [[Utica Memorial Auditorium]].<ref name="Comets AHL">{{cite web|title=Utica Comets to join AHL in 2013-14|url=http://theahl.com/utica-comets-to-join-ahl-in-2013-14-p184568|publisher=American Hockey League|accessdate=2013-06-14}}</ref>
+
+Utica has two women's [[roller derby]] leagues, [[Central New York Roller Derby]] and Utica Rollergirls. Central New York Roller Derby is a [[Women's Flat Track Derby Association]] League; they have three teams, all affiliated with CNYRD. The teams are the Utica Clubbers, and the Blue Collar Betties and the Rome Wreckers. The Utica Rollergirls are also a single team league which is affiliated with [[USA Roller Sports]]. Both leagues compete against teams from other leagues in the upstate NY area and surrounding states. In addition, Utica also has a men's roller derby team, as-yet unaffiliated Quadfathers.<ref>[http://www.derbyroster.com/ Roller Derby Worldwide<!-- Bot generated title -->]</ref>
+
+Utica has a rugby team called The Utica Klubs, which plays rugby matches all over the state and invites several teams to Utica for matches each year.<ref>[http://uticarugby.com/ Utica Klubs website]</ref>
+
+==Media==
+
+===Television===
+*[http://www.wktv.com/ WKTV-NBC NEWSChannel 2] Central New York's NBC Affiliate
+*[http://www.wtvh.com/ WTVH-CBS 5] Central New York's CBS Affiliate
+*[http://cnyhomepage.com/ WUTR] Central New York's ABC Affiliate
+*[http://cnyhomepage.com/ WFXV] Central New York's FOX Affiliate
+*[[WCNY-TV|WCNY]] Central New York's PBS Affiliate
+
+===Print===
+Utica's daily newspaper is the [[Utica Observer-Dispatch]]. An independent news magazine, The Utica Phoenix, is also printed.
+
+===Radio===
+
+{{columns-list|5|
+*[[WBGK]]
+*[[WIBX]]
+*[[WFRG]]
+*[[WHCL]]
+*[[WKAL]]
+*[[WKLL]]
+*[[WKVU]]
+*[[WLZW]]
+*[[WMVN (FM)|WMVN]]
+*[[WNRS (AM)|WNRS]]
+*[[WODZ]]
+*[[WOKR]]
+*[[WOUR]]
+*[[WPNR]]
+*[[WRCK (AM)|WRCK]]/[[WUSP]]
+*[[WRNY (AM)|WRNY]]/[[WIXT (AM)|WIXT]]/[[WTLB]]
+*[[WRUN]]
+*[[WRVN]]
+*[[WSKS/WSKU]]
+*[[WUTQ-FM|WUTQ]]
+*[[WUMX]]
+*[[WUNY]]
+*[[WUTI]]
+*[[WXUR]]}}
+
+==Education==
+Utica's sole remaining public high school is [[Thomas R. Proctor High School]], as its original public high school (Utica Free Academy, founded in 1814) shut down in 1990. Utica is also home to Notre Dame High School, a small parochial high school, founded in 1959 by the Xaverian Brothers.
+
+Collegiate choices in Utica include: [[Utica College of Syracuse University|Utica College]], [[State University of New York Institute of Technology]], [[Mohawk Valley Community College]], and [[Utica School of Commerce]]. Nearby colleges include [[Hamilton College (New York)|Hamilton College]] in [[Clinton, Oneida County, New York|Clinton, New York]], [[Herkimer County Community College]] in [[Herkimer (village), New York|Herkimer, New York]], and [[Colgate University]] in [[Hamilton (village), New York|Hamilton, New York]].
+
+Utica is the home of [[Utica College]], founded in 1946, as a four-year college founded by [[Syracuse University]]. Utica College was originally an urban campus in the Oneida Square area of the city. In 1961, it relocated to a modern {{convert|128|acre|km2|sing=on}} campus on the west side of Utica. Currently a new science wing and additional buildings are being added to the campus.
+
+Utica is also the home of [[Mohawk Valley Community College]], which was founded in 1946 as the New York State Center of Applied Arts and Sciences at Utica, and was the first community college established in New York State.  MVCC  found its true raison d'etre during the 1950s as a training facility for unemployed textile workers looking to operate technical equipment at a new General Electric plant.<ref>"General Electric Helps Rebuild the Mohawk Valley," by Julia G. Diliberto, pp. 85-103, from Building the Mohawk Valley, David G. Wittner, ed., Center for Historical Research, Utica College, 2003.</ref>  The college became a fully accredited institution in 1960, and has gradually expanded its campus along Utica's Culver Avenue.
+
+[[State University of New York Institute of Technology]] is located along the Utica and Marcy New York border, though it was first established in 1969 on Utica's westside.  A four-year institution, SUNYIT offers a variety of technology based majors and master's degree programs.
+
+[[Empire State College]] was founded in 1971 and is one of thirteen SUNY colleges of arts and sciences.  Empire State College consists of eight centers with the Central New York Center being in Syracuse.  Each center has different units providing educational services for those communities.  The Utica Unit serves Oneida, Herkimer, Madison, and Otsego counties.
+
+===Colleges and universities===
+{{See also|Utica-Rome_Metropolitan_Statistical_Area#Colleges_and_universities}}
+*[[Empire State College]]
+*[[Mohawk Valley Community College]]
+*[[Munson-Williams-Proctor Arts Institute]]
+*[[St. Elizabeth's College of Nursing]]
+*[[SUNY Institute of Technology]]
+*[[Utica School of Commerce]]
+*[[Utica College]]
+
+==Local inventions==
+The "Union Suit"- a type of red-colored long underwear jumpsuit with a buttoned flap on the backside was invented in Utica.{{Citation needed|date=February 2007}}
+ 	
+The first color newspaper, "The Utica Saturday Globe" was published in Utica.<ref>Utica: then and Now, by Joseph Bottini and James Davis, Arcadia Publishing, 2007, p. 48</ref>
+
+The Utica Crib, a device for restraining persons, was named for the [[Utica Psychiatric Center|New York State Lunatic Asylum]] at Utica where it was heavily used in the 19th century to confine patients who refused to stay in their beds.<ref>[http://www.uihealthcare.com/depts/medmuseum/galleryexhibits/diagnostik/utica.html The Straightjacket and Utica Crib: Diagnostik: Medical Museum: University of Iowa Health Care<!-- Bot generated title -->]{{dead link|date=July 2013}}</ref>
+
+==Notable residents==
+{{Expand list|date=December 2010}}
+
+===Nineteenth Century and earlier===
+*Revolutionary war hero [[Friedrich Wilhelm von Steuben|Baron von Steuben]] is buried near Utica.<ref>{{Find a Grave|4921|Baron von Steuben}}</ref>
+*Revolutionary war soldier [[Benjamin Walker (New York)|Benjamin Walker]] died in Utica.<ref>{{cite web |url=http://bioguide.congress.gov/scripts/biodisplay.pl?index=W000046 |title=WALKER, Benjamin, (1753 - 1818) |work=Biographical Directory of the United States Congress |publisher=Office of the Historian, United States Congress |accessdate=June 23, 2013}}</ref>
+*New York State Governor and Democratic presidential candidate [[Horatio Seymour]] was a native of Utica and is buried there.<ref>{{Find a Grave|5356626|Horatio Seymour}}</ref><ref name="MrsMecomber">{{cite web |url=http://newyorktraveler.net/forest-hill-cemetery-utica-ny/ |title=Forest Hill Cemetery, Utica, NY |author=Mrs. Mecomber |date=June 14, 2008 |work=New York Traveler |publisher= |accessdate=2010-09-13}}</ref>
+*US Senator and Republican [[Stalwart (politics)|Stalwart]] political leader [[Roscoe Conkling]] was Mayor of Utica and is buried there.<ref>{{CongBio|C000681|name=Roscoe Conkling|date=Roscoe Conkling}}</ref><ref>{{Find a Grave|6653495|Roscoe Conkling}}</ref>
+*United States Vice-President [[James Schoolcraft Sherman]] was born in Utica and is buried there.<ref>{{CongBio|S000345|name=James Schoolcraft Sherman}}</ref><ref>{{Find a Grave|2716|James Schoolcraft Sherman}}</ref>
+*[[Arthur Bowen Davies]], American artist, was born in Utica on September 26, 1863.
+*[[Chandler J. Wells]], former Mayor of [[Buffalo, New York]]
+
+===Twentieth and Twenty-First Century===
+;Arts and entertainment
+*Actress and singer [[Annette Funicello]] was born in Utica on October 22, 1942.<ref>{{IMDb name|0002088|Annette Funicello}}</ref> She poked mild fun at the city in her<ref>{{cite web |url=http://annetteconnection.com/Music.php |title=Music |work=Annette Connection |quote=Promised Land, a song she and her husband, Glen Holt wrote together telling the story of her and her family's journey from New York to California. |accessdate=June 23, 2013}}</ref> song "The Promised Land" (''"I don’t remember too much from the trip from my birth place to California... From Sin City in the East, to the City of Angels..."'')<ref>{{cite web |url=http://961wodz.com/was-annette-funicello-making-fun-of-utica-in-1983-with-the-song-the-promised-land/ |title=Was Annette Funicello Making Fun Of Utica In 1983 With The Song "The Promised Land"? |author=Davey Jones |date=April 8, 2013 |publisher=WODZ 96.1 AM |accessdate=June 23, 2013}}</ref>
+*[[Lincoln Holroyd]] was an active performer, band leader and music educator in Utica, N.Y., from 1905 until his death in 1961.
+*Actor [[Ron O'Neal]] was born in Utica.<ref>{{IMDb name|0641938|Ron O'Neal}}</ref>
+*Artist [[Vaughn Bodē]] was born in Utica<ref>{{cite web |url=http://www.aandhmag.com/feature-artist-vaughn-bode/ |title=Feature Artist: Vaughn Bode |work=A&H Magazine |accessdate=December 9, 2013}}</ref> and was graduated from Proctor High School. His son, artist [[Mark Bodé]], was also born in Utica.<ref>{{cite web |url=http://www.artandarchitecture-sf.com/tag/vaughn-bode |title=Happy Herbs |work=
+Art and Architecture – San Francisco |accessdate=December 9, 2013}}</ref>
+*[[Debbie Friedman]], singer-songwriter of Jewish religious-themed songs, born in Utica<ref>{{cite web |url= http://www.latimes.com/news/obituaries/la-me-debbie-friedman-20110111,0,4461079.story|title= Debbie Friedman, self-taught Jewish folk singer, dies at 59 |author= Elaine Woo|date= 11 January 2011|work= |publisher= [[Los Angeles Times]]|accessdate= 11 September 2013}}</ref>
+*Musicians [[Fran Cosmo]] and [[Tommy DeCarlo]] of the band [[Boston (band)|Boston]] are from Utica.{{citation needed|date=September 2010}}
+*Film producer, director and screenwriter [[Steven Brill (scriptwriter)|Steven Brill]] is from Utica.<ref>[http://festivaldelsole.org/festival-artists/steve-brill/ Steve Brill]. Festival del Sole. Retrieved on 2013-08-23.</ref>
+*Television personality [[TJ Allard]] is from Utica.<ref>{{IMDb name|1271121|TJ Allard}}</ref>
+*Actress [[Tiffany Pollard]] is from Utica.<ref>{{IMDb name|2428135|Tiffany Pollard}}</ref>
+*The band "[[moe.]]" is from Utica.<ref>{{Allmusic|class=artist|id=p194915|label=moe.}}</ref>
+
+;Sportspeople
+*[[Art Mills]] (son of [[Willie Mills (baseball)|Willie Mills]]), a National League pitcher; and coach of the 1945 World Series champions, the Detroit Tigers, was born in Utica.
+*[[Richie Evans]], race car driver{{citation needed|reason=no indication of link to Utica in his Wiki article|date=July 2013}}
+*[[Lou Lazzaro]], race car driver.<ref>http://www.greateruticasports.com/inductees/view/58/lou-lazzaro</ref>
+*Major League Baseball second baseman [[Dave Cash (baseball)|Dave Cash]] was born in Utica on June 11, 1948.
+*[[Andy Van Slyke]], (born 1960), former [[Major League Baseball]] [[outfielder]].
+*[[Mark Lemke]], (born 1965), former [[Major League Baseball]] player.
+*New Orleans Saints Defensive End [[Will Smith (American football)|Will Smith]] is from Utica, graduating from Thomas R. Proctor.
+*[[Chris Garrett (football)|Chris Garrett]] - [[Running back]] in college football and the [[Canadian Football League]] for the [[Winnipeg Blue Bombers]]
+*[[Robert Esche]], NHL hockey player and sports executive.
+
+;Business people
+*Real estate developer [[Steve Wynn (entrepreneur)|Steve Wynn]] is from Utica.<ref>{{cite news |url=http://www.timesonline.co.uk/tol/news/world/us_and_americas/article5467256.ece |title=Steve Wynn: Raising the stakes in Vegas |author=John Arlidge |date=January 11, 2009 |work=Sunday Times |accessdate=2011-01-20}}</ref>
+*[[David F. D'Alessandro]] (born January 6, 1951, Utica, New York), Chairman and CEO of John Hancock Financial Services and writer
+
+;Other
+* [[Fred J. Douglas]], former US Congressman
+* [[Michael Kernan]] (born 1927), former [[Washington Post]] journalist
+* [[Charles A. Talcott]], former US Congressman
+*Political pollster [[John Zogby]] is from Utica.
+
+==Utica in popular culture and literature==
+* Utica is mentioned in [[Allen Ginsberg]]'s poem [[Howl]] (''"I'm with you in Rockland / where you drink the tea of the / breasts of the spinsters of Utica"'' ).<ref>{{cite web |url=http://www.pangloss.com/seidel/Ramble/howl_text.html |title=HOWL |author=Allen Ginsberg |date= |work= |publisher= |accessdate=2010-09-12}}</ref>
+* Portions of the 1977 film ''[[Slap Shot]]'' starring [[Paul Newman]] were filmed at the Utica Memorial Auditorium.<ref>{{cite web |url=http://www.uticaod.com/sports/hockey/x1015940764/Hanson-Brothers-will-return-to-Utica-Aud |title='Hanson Brothers' will return to Utica Aud |author=Fran Perritano |date=May 28, 2010 |work=Utica Observer-Dispatch |accessdate=2010-09-12}}</ref>
+*The American television program ''[[The Simpsons]]'' makes occasional reference to Utica.
+** [[Superintendent Chalmers]] is from Utica.<ref>{{cite web |url=http://www.snpp.com/episodes/3F18.html |title=22 Short Films About Springfield |work=The Simpsons Archive |accessdate=2010-09-12}}</ref>
+** The [[Eeny Teeny Maya Moe]] episode (#LABF06) shows a hockey game between the Springfield Isotopes and the [[Clinton Comets#Other Hockey Teams in the Mohawk Valley|Utica Mohawks]].{{Citation needed|date=September 2010}}
+** Another episode features an old newsreel that ends with the narrator exclaiming, "So watch out, Utica!  Springfield is a city on the... grow!"{{Citation needed|date=September 2010}}
+* The American television program ''[[The Office (US TV series)|The Office]]'' makes occasional reference to Utica: The "Utica branch" is one of a handful of the fictional company [[Dunder-Mifflin]]'s satellite offices, and has been mentioned sporadically throughout the show.
+**The [[Branch Wars]] episode is set partly in Utica. It was not filmed there, so the Mohawk Valley Chamber of Commerce and other local groups donated objects to [[Set dressing|dress]] the set to look like an actual Utica-style office.<ref>{{cite web |url=http://www.uticaod.com/lifestyles/x680961757 |title='The Office' in a Utica state of mind |author=Elizabeth Cooper |date=October 3, 2007 |work=Utica Observer-Dispatch |publisher= |accessdate=2010-09-12}}</ref><ref>{{cite web |url=http://www.wktv.com/news/local/10949656.html |title=A peek at the Utica Branch of NBC's "The Office" |author=Dave Dellecese |date=November 1, 2007 |work=WKTV Utica |publisher= |accessdate=2010-09-12}}</ref>
+**The [[Lecture Circuit|Lecture Circuit Pt. 1]] episode is also partly set in Utica.<ref>{{Cite news |last=Sepinwall |first=Alan |title=The Office, "Lecture Circuit, Part One": The closure |work=[[The Star-Ledger]] |date=February 6, 2009 |url=http://www.nj.com/entertainment/tv/index.ssf/2009/02/the_office_lecture_circuit_par.html |accessdate=2010-09-12}}</ref><ref>{{cite web |url=http://www.tvovermind.com/nbc/the-office/the-office-lecture-circuit-pt-1-recap/1279 |title=The Office: ‘Lecture Circuit – Pt. 1′ Recap |author=CastawayCayley |date=February 10, 2009 |work=TV Overmind |publisher= |accessdate=2010-09-12}}</ref>
+*Bobbi Anderson, the protagonist of Stephen King's novel ''[[The Tommyknockers]]'', is from Utica.<ref>{{cite web |url=http://www.hodder.co.uk/Assets/WorkAssets/Extracts/The%20Tommyknockers.pdf |title=The Tommyknockers (extract) |author=Stephen King |date= |work= |publisher= |format=PDF |accessdate=2010-09-12}}</ref>
+* On ''[[The Honeymooners]]'' 1950s television show starring Jackie Gleason, Alice's Uncle is from Utica.
+* The protagonist of the 1997-1998 NBC sitcom ''[[Jenny (TV series)|Jenny]]'', starring [[Jenny McCarthy]], is from Utica and the series begins there.
+*The character Dr. Albert Hirsch from the Bourne film series is from Utica, NY as noted in documents reviewed by the character Pamela "Pam" Landy during the 2007 film The [[The Bourne Ultimatum (film)|Bourne Utimatium]].<ref>[http://filmpilgrim.blogspot.com/2007/09/bourne-ultimatum.html The Film Pilgrim: The Bourne Ultimatum<!-- Bot generated title -->]</ref>
+
+==References==
+{{reflist|colwidth=30em}}
+
+==Further reading==
+
+* Albertype Company, [http://archive.org/details/picturesqueutica00albe ''Picturesque Utica, In Photo-Gravure, From Recent Negatives.''] Utica, NY: W.A. Semple, 1898.
+* M.M. Bagg, [http://archive.org/details/cu31924028826556 ''Memorial History of Utica, NY: From its Settlement to the Present Time.''] Syracuse, NY: D. Mason, 1892.
+* Philip A. Bean, ''La Colonia: Italian Life and Politics in Utica, New York, 1860-1960.'' Utica, NY: Utica College, Ethnic Heritage Studies Center, 2004.
+* Philip A. Bean, ''The Urban Colonists: Italian American Identity and Politics in Utica, New York.'' Syracuse, NY: Syracuse University Press, 2010.
+* Elizabeth Gilman Brown, [http://archive.org/details/cu31924028826606 ''Outline History of Utica and Vicinity.''] Utica, NY: L.C. Childs and Son, 1900.
+* Malio J. Cardarelli, ''Dawn to Dusk in Utica, New York.'' New Hartford, NY: Marlio J. Cardarelli, 2009.
+* Hamilton Child, [http://archive.org/details/gazetteerbusines06chil ''Gazetteer and Business Directory of Oneida County.''] Syracuse, NY: Syracuse Journal, 1869.
+* T. Harvey Ferris, [http://archive.org/details/uticaheartofempi00ferr ''Utica: The Heart of the Empire State.''] Boonville, NY: Willard Press, 1913.
+* Charles N. Gaffney, [http://archive.org/details/uticacitydirect00gaffgoog ''The Utica City Directory for the Year 1883: With a General and Business Directory of Utica.''] Utica, NY: Charles N. Gaffney, 1883.
+* Oneida Historical Society, [http://archive.org/details/cu31924028826614 ''Semi-Centennial of the City of Utica, March 1st, 1882 and First Annual Supper of the Half Century Club, March 2nd, 1882.''] Utica, NY: Curtiss and Childs, 1882.
+* Madeleine B. Stern, ''William Williams: Pioneer Printer of Utica, New York, 1787-1850.'' Charlottesville, VA: Bibliographical Society of the University of Virginia, 1951.
+* John J. Walsh, ''Vignettes of Old Utica.'' Utica, NY: Utica Public Library, 1982.
+
+==External links==
+{{Commons category|Utica, New York}}
+{{Wikivoyage|Utica}}
+{{AmCyc Poster|Utica (New York)|Utica, New York}}
+*[http://www.cityofutica.com/ City of Utica, New York]
+*[http://www.mvchamber.org/ Mohawk Valley Chamber of Commerce]
+*[http://www.uticalandmarks.com/ The Landmarks Society of Greater Utica]
+*[http://www.oneidacountyhistory.org/ Oneida County Historical Society]
+*[http://www.uticarememberwhen.com/ Utica Remember When]
+*[http://www.archive.org/stream/nationalmagazine21brayrich#page/455/mode/1up 1905 Magazine Article with photos]
+*[http://stateofthereunion.com/home/season-2-2/utica Utica Featured on NPR's State of the Re:Union]
+* NYPL Digital Gallery. [http://digitalgallery.nypl.org/nypldigital/dgkeysearchresult.cfm?word=Utica%20%28N%2EY%2E%29&s=3&notword=&f=2 Items related to Utica, NY], various dates
+* Library of Congress, Prints & Photos Division. [http://www.loc.gov/pictures/search/?q=utica%20new%20york Items related to Utica, NY], various dates
+
+{{Oneida County, New York}}
+{{Central New York colleges}}
+{{New York}}
+
+{{Coord|display=title|43.096569|-75.231887}}
+
+[[Category:Utica, New York| ]]
+[[Category:Cities in New York]]
+[[Category:County seats in New York]]
+[[Category:Early American industrial centers]]
+[[Category:Populated places established in 1758]]
+[[Category:Cities in Oneida County, New York]]

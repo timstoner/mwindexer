@@ -38,7 +38,7 @@ public class Main {
 		LOG.info("MediaWiki Dump File Indexer");
 
 		// create a new spring configuration component
-		Configuration configuration = new Configuration();
+		// Configuration configuration = new Configuration();
 
 		// parse the command line options
 		CommandLine cl = parseArguments(args);
@@ -71,11 +71,12 @@ public class Main {
 		}
 
 		// set the input stream to the spring configuraiton
-		configuration.setInputStream(inputStream);
+		// configuration.setInputStream(inputStream);
 
 		// instantiate the application context using a classpath
 		// applicationContext.xml file
 		LOG.debug("Initializing Application Context");
+
 		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				"applicationContext.xml")) {
 			// get the configured dump reader
