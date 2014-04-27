@@ -41,14 +41,16 @@ import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
 import org.mwindexer.model.Title;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class XmlDumpReader extends DefaultHandler {
 
-	@Autowired
+	private static Logger LOG = LoggerFactory.getLogger(XmlDumpReader.class);
+
 	private InputStream inputStream;
 	private DumpWriter dumpWriter;
 
@@ -366,11 +368,13 @@ public class XmlDumpReader extends DefaultHandler {
 	// -----------
 
 	void openPage() {
+		LOG.debug("openPage");
 		page = new Page();
 		pageSent = false;
 	}
 
 	void closePage() throws IOException {
+		LOG.debug("closePage");
 		if (pageSent)
 			dumpWriter.writeEndPage();
 		page = null;

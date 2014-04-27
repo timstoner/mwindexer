@@ -33,8 +33,12 @@ import org.mwindexer.DumpWriter;
 import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MultiWriter implements DumpWriter {
+	private static Logger LOG = LoggerFactory.getLogger(MultiWriter.class);
+
 	List<DumpWriter> writers;
 
 	public MultiWriter() {
@@ -88,6 +92,6 @@ public class MultiWriter implements DumpWriter {
 	}
 
 	public void setWriters(List<DumpWriter> writers) {
-		writers = writers;
+		this.writers = writers;
 	}
 }

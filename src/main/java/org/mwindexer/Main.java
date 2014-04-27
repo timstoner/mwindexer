@@ -37,9 +37,6 @@ public class Main {
 	public Main(String[] args) {
 		LOG.info("MediaWiki Dump File Indexer");
 
-		// create a new spring configuration component
-		// Configuration configuration = new Configuration();
-
 		// parse the command line options
 		CommandLine cl = parseArguments(args);
 		// get the user's solr url
@@ -54,24 +51,7 @@ public class Main {
 		}
 
 		// create the input stream
-		InputStream inputStream = null;
-
-		try {
-			if (inputPath != null) {
-				// if an input path was specified by user, use it as the input
-				LOG.info("Input File: " + inputPath);
-				inputStream = Tools.openInputFile(inputPath);
-			} else {
-				// if no input path specified, use the standard input
-				LOG.info("No Input File specified, using Standard Input");
-				inputStream = Tools.openStandardInput();
-			}
-		} catch (IOException e) {
-			LOG.error("Error opening input stream", e);
-		}
-
-		// set the input stream to the spring configuraiton
-		// configuration.setInputStream(inputStream);
+		InputStream inputStream = getInputStream(inputPath);
 
 		// instantiate the application context using a classpath
 		// applicationContext.xml file
@@ -88,6 +68,7 @@ public class Main {
 			DateTime startDateTime = DateTime.now();
 
 			try {
+				reader.setInputStream(inputStream);
 				reader.readDump();
 			} catch (IOException e) {
 				LOG.error("Problem reading dump", e);
@@ -101,6 +82,25 @@ public class Main {
 					+ interval.toDuration().getStandardSeconds());
 			LOG.info("All done.");
 		}
+	}
+
+	public InputStream getInputStream(String path) {
+		InputStream inputStream = null;
+		try {
+			if (path != null) {
+				// if an input path was specified by user, use it as the input
+				LOG.info("Input File: " + path);
+				inputStream = Tools.openInputFile(path);
+			} else {
+				// if no input path specified, use the standard input
+				LOG.info("No Input File specified, using Standard Input");
+				inputStream = Tools.openStandardInput();
+			}
+		} catch (IOException e) {
+			LOG.error("Error opening input stream", e);
+		}
+
+		return inputStream;
 	}
 
 	public CommandLine parseArguments(String[] args) {
@@ -135,25 +135,39 @@ public class Main {
 
 	public DumpWriter addFilter(DumpWriter sink, String filter, String param)
 			throws IOException, ParseException {
-		if (filter.equals("latest"))
-			return new LatestFilter(sink);
-		else if (filter.equals("namespace"))
-			return new NamespaceFilter(sink, param);
-		else if (filter.equals("notalk"))
-			return new NotalkFilter(sink);
-		else if (filter.equals("titlematch"))
-			return new TitleMatchFilter(sink, param);
-		else if (filter.equals("list"))
-			return new ListFilter(sink, param);
-		else if (filter.equals("exactlist"))
-			return new ExactListFilter(sink, param);
-		else if (filter.equals("revlist"))
-			return new RevisionListFilter(sink, param);
-		else if (filter.equals("before"))
-			return new BeforeTimeStampFilter(sink, param);
-		else if (filter.equals("after"))
-			return new AfterTimeStampFilter(sink, param);
-		else
+		DumpWriter writer = null;
+
+		switch (filter) {
+		case "latest":
+			writer = new LatestFilter(sink);
+			break;
+		case "notalk":
+			writer = new NotalkFilter(sink);
+			break;
+		case "namespace":
+			writer = new NamespaceFilter(sink, param);
+			break;
+		case "titlematch":
+			writer = new TitleMatchFilter(sink, param);
+			break;
+		case "list":
+			writer = new ListFilter(sink, param);
+			break;
+		case "exactlist":
+			writer = new ExactListFilter(sink, param);
+			break;
+		case "before":
+			writer = new BeforeTimeStampFilter(sink, param);
+			break;
+		case "after":
+			writer = new AfterTimeStampFilter(sink, param);
+			break;
+		case "revlist":
+			writer = new RevisionListFilter(sink, param);
+		default:
 			throw new IllegalArgumentException("Filter unknown: " + filter);
+		}
+
+		return writer;
 	}
 }

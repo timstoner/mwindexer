@@ -7,7 +7,7 @@
 		<!-- Match xml dump data with solr schema field -->
 		<property name="titleField" value="title_t" />
 		<property name="namespaceField" value="namespace_i" />
-		<property name="pageIdField" value="pageid_i" />
+		<property name="pageIdField" value="id" />
 		<property name="revisionIdField" value="revisionid_i" />
 		<property name="parentIdField" value="parentid_i" />
 		<property name="contributorUsernameField" value="contributorusername_s" />

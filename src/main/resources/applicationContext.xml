@@ -7,8 +7,8 @@
 	<import resource="solrFieldMapping.xml" />
 
 	<context:property-placeholder location="classpath:indexer.properties " />
-
-	<context:component-scan base-package="org.mwindexer" />
+	
+	<bean id="config" class="org.mwindexer.Configuration" />
 
 	<bean id="solrWriter" class="org.mwindexer.indexer.SolrDumpWriter">
 		<constructor-arg name="location" value="${solr.location}" />

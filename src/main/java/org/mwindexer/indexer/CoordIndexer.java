@@ -1,6 +1,9 @@
 package org.mwindexer.indexer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,28 +41,52 @@ public class CoordIndexer implements TextIndexer {
 	public Map<String, Object> indexText(String text) {
 		Map<String, Object> fields = new HashMap<>();
 
-		LOG.debug(text);
-
 		Matcher matcher = pattern.matcher(text);
 		String group;
 		String coord;
 		String[] split;
+
+		List<String> coordMatches = new LinkedList<>();
+
+		// {{Coord|display=title|43.096569|-75.231887}}
+
 		while (matcher.matches()) {
 			group = matcher.group();
 			LOG.debug("Coord Found: {}", group);
 
 			// strip off brackets
 			coord = group.substring(2, group.length() - 2);
-			LOG.debug("Coord Found: {}", group);
+			coordMatches.add(coord);
+		}
 
-			// tokenizer
-			split = coord.split("\\|");
-			for (String value : split) {
-				LOG.debug(value);
+		List<String> latLons = parseCoordMatches(coordMatches);
+
+		return fields;
+	}
+
+	private List<String> parseCoordMatches(List<String> matches) {
+		List<String> latLons = new LinkedList<>();
+
+		for (String match : matches) {
+			List<String> buffer = new ArrayList<>();
+			String[] elements = match.split("\\|");
+			boolean add = true;
+			for (String element : elements) {
+				if (element.equalsIgnoreCase("coord")) {
+					add = false;
+				} else if (element.contains("=") || element.contains(":")) {
+					add = false;
+				} else {
+					add = true;
+				}
+
+				if (add) {
+					buffer.add(element);
+				}
 			}
 		}
 
-		return fields;
+		return latLons;
 	}
 
 }
