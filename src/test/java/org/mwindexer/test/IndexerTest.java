@@ -6,6 +6,7 @@ import org.apache.solr.core.CoreContainer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mwindexer.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +34,7 @@ public class IndexerTest {
 		LOG.info("testing indexer");
 		String args[] = { "-i", "src/test/resources/sample.xml" };
 
-//		 Indexer indexer = new Indexer(args);
+		Main main = new Main(args);
 
 	}
 

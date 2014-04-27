@@ -35,59 +35,59 @@ import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
 
 public class MultiWriter implements DumpWriter {
-	List<DumpWriter> sinks;
+	List<DumpWriter> writers;
 
 	public MultiWriter() {
-		sinks = new LinkedList<DumpWriter>();
+		writers = new LinkedList<DumpWriter>();
 	}
 
 	public void close() throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.close();
 		}
 	}
 
 	public void writeStartWiki() throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeStartWiki();
 		}
 	}
 
 	public void writeEndWiki() throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeEndWiki();
 		}
 	}
 
 	public void writeSiteinfo(Siteinfo info) throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeSiteinfo(info);
 		}
 	}
 
 	public void writeStartPage(Page page) throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeStartPage(page);
 		}
 	}
 
 	public void writeEndPage() throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeEndPage();
 		}
 	}
 
 	public void writeRevision(Revision revision) throws IOException {
-		for (DumpWriter sink : sinks) {
+		for (DumpWriter sink : writers) {
 			sink.writeRevision(revision);
 		}
 	}
 
 	public void add(DumpWriter sink) {
-		sinks.add(sink);
+		writers.add(sink);
 	}
 
-	public void addWriters(List<DumpWriter> writers) {
-		sinks.addAll(writers);
+	public void setWriters(List<DumpWriter> writers) {
+		writers = writers;
 	}
 }

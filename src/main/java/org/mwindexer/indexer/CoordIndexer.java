@@ -20,6 +20,8 @@ public class CoordIndexer implements TextIndexer {
 
 	@Override
 	public List<SolrInputField> indexText(String text) {
+		// LOG.debug(text);
+		LOG.debug(coordPattern);
 		List<SolrInputField> fields = new ArrayList<>();
 		// "\\{\\{Coord.*\\}\\}";
 		Pattern pattern = Pattern.compile(coordPattern,
@@ -28,9 +30,22 @@ public class CoordIndexer implements TextIndexer {
 		SolrInputField field = new SolrInputField(fieldName);
 
 		Matcher matcher = pattern.matcher(text);
+		String group;
+		String coord;
+		String[] split;
 		while (matcher.matches()) {
-			String group = matcher.group();
+			group = matcher.group();
 			LOG.debug("Coord Found: {}", group);
+
+			// strip off brackets
+			coord = group.substring(2, group.length() - 2);
+			LOG.debug("Coord Found: {}", group);
+
+			// tokenizer
+			split = coord.split("\\|");
+			for (String value : split) {
+				LOG.debug(value);
+			}
 		}
 
 		return fields;
@@ -40,7 +55,15 @@ public class CoordIndexer implements TextIndexer {
 		this.coordPattern = pattern;
 	}
 
+	public String getPattern() {
+		return coordPattern;
+	}
+
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
+	}
+
+	public String getFieldName() {
+		return fieldName;
 	}
 }
