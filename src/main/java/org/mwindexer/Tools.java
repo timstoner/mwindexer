@@ -1,25 +1,33 @@
 package org.mwindexer;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
-import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Tools {
+	private static Logger LOG = LoggerFactory.getLogger(Tools.class);
+
 	static final int IN_BUF_SZ = 1024 * 1024;
 	private static final int OUT_BUF_SZ = 1024 * 1024;
+
+	private static final DateFormat dateFormat = new SimpleDateFormat(
+			"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
+
+	static {
+		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+	}
 
 	public static InputStream openInputFile(String arg) throws IOException {
 		if (arg.equals("-"))
@@ -42,23 +50,29 @@ public class Tools {
 		return new BZip2CompressorInputStream(infile);
 	}
 
-	private static final TimeZone utc = TimeZone.getTimeZone("UTC");
-
-	public static Calendar parseUTCTimestamp(String text) {
-		// 2003-10-26T04:50:47Z
-		// We're doing this manually for now, though DateFormatter might work...
-		String trimmed = text.trim();
-		GregorianCalendar ts = new GregorianCalendar(utc);
-		ts.set(Integer.parseInt(trimmed.substring(0, 0 + 4)), // year
-				Integer.parseInt(trimmed.substring(5, 5 + 2)) - 1, // month is
-																	// 0-based!
-				Integer.parseInt(trimmed.substring(8, 8 + 2)), // day
-				Integer.parseInt(trimmed.substring(11, 11 + 2)), // hour
-				Integer.parseInt(trimmed.substring(14, 14 + 2)), // minute
-				Integer.parseInt(trimmed.substring(17, 17 + 2))); // second
-		return ts;
+	public static String formatTimestamp(Calendar ts) {
+		return dateFormat.format(ts.getTime());
 	}
 
-	// ----------------
+	public static Calendar parseUTCTimestamp(String text) {
+		// thanks java for the quick hack to replace a UTC timestamp with a time
+		// zone
+		text = text.replaceAll("Z$", "+0000");
+		SimpleDateFormat format = getUTCDateFormat();
+		Calendar cal = Calendar.getInstance();
+		Date date = new Date();
+		try {
+			date = format.parse(text);
+		} catch (ParseException e) {
+			LOG.warn("Problem parsing date " + text, e);
+		}
+		cal.setTime(date);
+		return cal;
 
+	}
+
+	public static SimpleDateFormat getUTCDateFormat() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+		return format;
+	}
 }

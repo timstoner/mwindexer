@@ -1,6 +1,7 @@
 package org.mwindexer.indexer;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +12,9 @@ import org.apache.solr.client.solrj.impl.CloudSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.UpdateResponse;
 import org.apache.solr.common.SolrInputDocument;
-import org.apache.solr.common.SolrInputField;
 import org.mwindexer.DumpWriter;
 import org.mwindexer.TextIndexer;
+import org.mwindexer.Tools;
 import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
@@ -36,7 +37,8 @@ public class SolrDumpWriter implements DumpWriter {
 	private List<TextIndexer> textIndexers;
 
 	public SolrDumpWriter(int bufferSize, String type, String location) {
-		LOG.info("SolrDumpWriter init");
+		String msg = String.format("init %s %s %s", bufferSize, type, location);
+		LOG.info(msg);
 		this.bufferSize = bufferSize;
 		solrInputDocuments = new LinkedList<>();
 
@@ -70,12 +72,8 @@ public class SolrDumpWriter implements DumpWriter {
 
 	@Override
 	public void writeEndWiki() throws IOException {
-		try {
-			UpdateResponse response = solrServer.commit();
-			LOG.debug("Solr Commit Response {}", response);
-		} catch (SolrServerException e) {
-			LOG.error("Problem commiting documents to solr server", e);
-		}
+		addSolrDocuments();
+		commitSolrDocuments();
 	}
 
 	@Override
@@ -85,6 +83,7 @@ public class SolrDumpWriter implements DumpWriter {
 
 	@Override
 	public void writeStartPage(Page page) throws IOException {
+		LOG.debug("writeStartPage {}", page.Title.Text);
 		doc = new SolrInputDocument();
 		doc.addField(fieldMap.getPageIdField(), page.Id);
 		doc.addField(fieldMap.getTitleField(), page.Title.Text);
@@ -97,20 +96,14 @@ public class SolrDumpWriter implements DumpWriter {
 		solrInputDocuments.add(doc);
 
 		if (solrInputDocuments.size() == bufferSize) {
-			try {
-				UpdateResponse response = solrServer.add(solrInputDocuments);
-				LOG.debug("Solr Add Response {}", response);
-			} catch (SolrServerException e) {
-				LOG.error("Problem sending documents to solr server", e);
-			} finally {
-				solrInputDocuments.clear();
-			}
+			addSolrDocuments();
 		}
 	}
 
 	@Override
 	public void writeRevision(Revision revision) throws IOException {
-		doc.addField(fieldMap.getTimestampField(), revision.Timestamp);
+		doc.addField(fieldMap.getTimestampField(),
+				Tools.formatTimestamp(revision.Timestamp));
 		doc.addField(fieldMap.getCommentField(), revision.Comment);
 		doc.addField(fieldMap.getTextField(), revision.Text);
 
@@ -122,4 +115,27 @@ public class SolrDumpWriter implements DumpWriter {
 		}
 	}
 
+	private void addSolrDocuments() {
+		// solr complains if you add 0 documents 'missing content stream'
+		if (solrInputDocuments.size() > 0) {
+			try {
+				UpdateResponse response = solrServer.add(solrInputDocuments);
+				LOG.debug("Solr Add Response {}", response);
+			} catch (SolrServerException | IOException e) {
+				LOG.error("Problem sending documents to solr server", e);
+			} finally {
+				solrInputDocuments.clear();
+			}
+		}
+	}
+
+	private void commitSolrDocuments() {
+		UpdateResponse response;
+		try {
+			response = solrServer.commit();
+			LOG.debug("Solr Commit Response {}", response);
+		} catch (SolrServerException | IOException e) {
+			LOG.error("Problem commiting documents to solr server", e);
+		}
+	}
 }

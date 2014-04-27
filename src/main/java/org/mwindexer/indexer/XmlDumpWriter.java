@@ -27,14 +27,11 @@ package org.mwindexer.indexer;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.mwindexer.DumpWriter;
+import org.mwindexer.Tools;
 import org.mwindexer.model.Contributor;
 import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
@@ -49,11 +46,6 @@ public class XmlDumpWriter implements DumpWriter {
 			+ version + "/";
 	protected static final String schema = "http://www.mediawiki.org/xml/export-"
 			+ version + ".xsd";
-	protected static final DateFormat dateFormat = new SimpleDateFormat(
-			"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
-	static {
-		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-	}
 
 	public XmlDumpWriter(OutputStream output) throws IOException {
 		stream = output;
@@ -118,7 +110,7 @@ public class XmlDumpWriter implements DumpWriter {
 		if (rev.Id != 0)
 			writer.textElement("id", Integer.toString(rev.Id));
 
-		writer.textElement("timestamp", formatTimestamp(rev.Timestamp));
+		writer.textElement("timestamp", Tools.formatTimestamp(rev.Timestamp));
 
 		writeContributor(rev.Contributor);
 
@@ -141,10 +133,6 @@ public class XmlDumpWriter implements DumpWriter {
 
 	static final String[][] deletedAttrib = new String[][] { { "deleted",
 			"deleted" } };
-
-	static String formatTimestamp(Calendar ts) {
-		return dateFormat.format(ts.getTime());
-	}
 
 	void writeContributor(Contributor contrib) throws IOException {
 		XmlWriter writer = this.writer;
