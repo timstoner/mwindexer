@@ -7,3 +7,7 @@ Some capabilities:
 Uses the filters from the mwdumper project to filer out pages and revisions. Filters are configured using the Spring applicationContext.xml, command line support is a TODO. Filters 'decorate' (design pattern) each dump writer. mwindexer supports multiple dump writers, although only one is configured in the project. Also working on supporting custom text indexers. You can see that in the CoordIndexer/CategoryIndexer, which parses the text in the article revision and looks for coord templates and category links.
 
 Hope you use it and it meets your needs. Also thinking about building a StackExchange dumper/indexer using mwdumper/this as a code baseline.
+
+To get started:
+Compile and build JAR: mvn package
+java -jar mwindexer.jar -i [input_path]
