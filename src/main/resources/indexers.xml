@@ -3,7 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="coordIndexer" class="org.mwindexer.indexer.CoordIndexer" />
+	<bean id="coordIndexer" class="org.mwindexer.indexer.CoordIndexer">
+		<constructor-arg name="coordPattern" value="\{\{Coord.*\}\}" />
+		<constructor-arg name="fieldName" value="coord_p" />
+	</bean>
 
 
 </beans>

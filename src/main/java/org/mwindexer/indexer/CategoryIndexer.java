@@ -1,15 +1,15 @@
 package org.mwindexer.indexer;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.solr.common.SolrInputField;
 import org.mwindexer.TextIndexer;
 
 public class CategoryIndexer implements TextIndexer {
 
 	@Override
-	public List<SolrInputField> indexText(String text) {
-		return null;
+	public Map<String, Object> indexText(String text) {
+		return new HashMap<String, Object>();
 	}
 
 }

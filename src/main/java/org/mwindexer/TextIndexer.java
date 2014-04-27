@@ -1,10 +1,8 @@
 package org.mwindexer;
 
-import java.util.List;
-
-import org.apache.solr.common.SolrInputField;
+import java.util.Map;
 
 public interface TextIndexer {
 
-	public List<SolrInputField> indexText(String text);
+	public Map<String, Object> indexText(String text);
 }

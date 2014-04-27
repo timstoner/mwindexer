@@ -3,6 +3,7 @@ package org.mwindexer.indexer;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -114,9 +115,9 @@ public class SolrDumpWriter implements DumpWriter {
 		doc.addField(fieldMap.getTextField(), revision.Text);
 
 		for (TextIndexer indexer : textIndexers) {
-			List<SolrInputField> fields = indexer.indexText(revision.Text);
-			for (SolrInputField field : fields) {
-				doc.put(field.getName(), field);
+			Map<String, Object> fields = indexer.indexText(revision.Text);
+			for (Map.Entry<String, Object> entry : fields.entrySet()) {
+				doc.addField(entry.getKey(), entry.getValue());
 			}
 		}
 	}

@@ -21,9 +21,7 @@ public class CoordIndexerTest {
 
 	@Before
 	public void setup() {
-		indexer = new CoordIndexer();
-		indexer.setFieldName("coord_dt");
-		indexer.setPattern("\\{\\{Coord.*\\}\\}");
+		indexer = new CoordIndexer("\\{\\{Coord.*\\}\\}", "coord_dt");
 
 		String path = "src/test/resources/text/utica.txt";
 		File file = new File(path);
