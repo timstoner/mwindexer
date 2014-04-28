@@ -7,6 +7,10 @@
 		<constructor-arg name="coordPattern" value="\{\{Coord.*\}\}" />
 		<constructor-arg name="fieldName" value="coord_p" />
 	</bean>
+	<bean id="categoryIndexer" class="org.mwindexer.indexer.CategoryIndexer">
+		<constructor-arg name="pattern" value="\\[\\[Category:.*\\]\\]" />
+		<constructor-arg name="fieldName" value="category_ts" />
+	</bean>
 
 
 </beans>

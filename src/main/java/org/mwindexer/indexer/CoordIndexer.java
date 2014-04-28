@@ -1,6 +1,5 @@
 package org.mwindexer.indexer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,49 +16,41 @@ public class CoordIndexer implements TextIndexer {
 	private static Logger LOG = LoggerFactory.getLogger(CoordIndexer.class);
 
 	/**
-	 * The Regular Expression pattern that finds Coord templates
-	 */
-	private String coordPattern;
-
-	/**
 	 * The Solr Schema Field Name that values will be indexed at
 	 */
 	private String fieldName;
 
-	private Pattern pattern;
+	private Pattern coordPattern;
 
-	public CoordIndexer(String coordPattern, String fieldName) {
-		this.coordPattern = coordPattern;
+	public CoordIndexer(String pattern, String fieldName) {
 		this.fieldName = fieldName;
 
-		LOG.debug("Pattern: {}", coordPattern);
+		LOG.debug("Pattern: {}", pattern);
 		// compile the pattern in the constructor for performance
-		pattern = Pattern.compile(coordPattern, Pattern.CASE_INSENSITIVE);
+		coordPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
 	}
 
 	@Override
 	public Map<String, Object> indexText(String text) {
 		Map<String, Object> fields = new HashMap<>();
+		List<String> groups = new LinkedList<>();
 
-		Matcher matcher = pattern.matcher(text);
+		Matcher matcher = coordPattern.matcher(text);
 		String group;
-		String coord;
-		String[] split;
-
-		List<String> coordMatches = new LinkedList<>();
 
 		// {{Coord|display=title|43.096569|-75.231887}}
 
-		while (matcher.matches()) {
+		while (matcher.find()) {
 			group = matcher.group();
 			LOG.debug("Coord Found: {}", group);
 
 			// strip off brackets
-			coord = group.substring(2, group.length() - 2);
-			coordMatches.add(coord);
+			group = group.substring(2, group.length() - 2);
+			groups.add(group);
 		}
 
-		List<String> latLons = parseCoordMatches(coordMatches);
+		List<String> latLons = parseCoordMatches(groups);
+		fields.put(fieldName, latLons);
 
 		return fields;
 	}
@@ -68,25 +59,128 @@ public class CoordIndexer implements TextIndexer {
 		List<String> latLons = new LinkedList<>();
 
 		for (String match : matches) {
-			List<String> buffer = new ArrayList<>();
-			String[] elements = match.split("\\|");
-			boolean add = true;
-			for (String element : elements) {
-				if (element.equalsIgnoreCase("coord")) {
-					add = false;
-				} else if (element.contains("=") || element.contains(":")) {
-					add = false;
-				} else {
-					add = true;
-				}
+			boolean missing = checkForMissing(match);
+			if (missing) {
+				// most likely {{coord missing...}}
+				continue;
+			}
 
-				if (add) {
-					buffer.add(element);
-				}
+			List<String> buffer = convertTemplateToBuffer(match);
+
+			if (buffer.size() % 2 != 0) {
+				LOG.warn("Malformed Coord: {}", match);
+				continue;
+			}
+
+			if (buffer.size() > 8) {
+				LOG.warn("Unexpected buffer size {} {}", buffer.size(), match);
+				continue;
+			}
+
+			int midpoint = buffer.size() / 2;
+
+			try {
+				double latitude = buildLatitudeCoordinate(new LinkedList<>(
+						buffer.subList(0, midpoint)));
+				double longitude = buildLongitudeCoordinate(new LinkedList<>(
+						buffer.subList(midpoint, buffer.size())));
+
+				String coord = latitude + "," + longitude;
+				LOG.debug("Coord: {}", coord);
+
+				latLons.add(coord);
+			} catch (NumberFormatException e) {
+				LOG.warn("Invalid Coordinates", e);
 			}
 		}
 
 		return latLons;
 	}
 
+	private boolean checkForMissing(String match) {
+		boolean missing = false;
+		match = match.toLowerCase();
+		if (match.startsWith("coord missing")
+				|| match.startsWith("coord unknown")) {
+			missing = true;
+		}
+
+		return missing;
+	}
+
+	private List<String> convertTemplateToBuffer(String template) {
+		String[] elements = template.split("\\|");
+		List<String> buffer = new LinkedList<>();
+		boolean add = true;
+		for (String element : elements) {
+			if (element.equalsIgnoreCase("coord") || element.contains("=")
+					|| element.contains(":")) {
+				add = false;
+			} else {
+				add = true;
+			}
+
+			if (add) {
+				buffer.add(element);
+			}
+		}
+		return buffer;
+	}
+
+	private double buildLatitudeCoordinate(List<String> buffer) {
+		boolean negate = false;
+		int lastIndex = buffer.size() - 1;
+		if (buffer.get(lastIndex).equals("S")) {
+			negate = true;
+		}
+
+		// remove trailing cardinal direction
+		if (buffer.get(lastIndex).equals("N")
+				|| buffer.get(lastIndex).equals("S")) {
+			buffer.remove(lastIndex);
+		}
+
+		double coord = buildCoordinate(buffer, negate);
+		return coord;
+	}
+
+	private double buildLongitudeCoordinate(List<String> buffer) {
+		boolean negate = false;
+		int lastIndex = buffer.size() - 1;
+
+		if (buffer.get(lastIndex).equals("W")) {
+			negate = true;
+		}
+
+		// remove trailing cardinal direction
+		if (buffer.get(lastIndex).equals("E")
+				|| buffer.get(lastIndex).equals("W")) {
+			buffer.remove(lastIndex);
+		}
+
+		double coord = buildCoordinate(buffer, negate);
+		return coord;
+	}
+
+	private double buildCoordinate(List<String> buffer, boolean negate) {
+		double coord = 0;
+		// convert seconds to fraction of minute
+		if (buffer.size() > 2) {
+			coord += Double.parseDouble(buffer.get(2)) / 60;
+		}
+
+		// add in seconds fraction and convert to fraction of degree
+		if (buffer.size() > 1) {
+			coord = (coord + Double.parseDouble(buffer.get(1))) / 60;
+		}
+
+		// add fraction of degree to the degrees
+		coord += Double.parseDouble(buffer.get(0));
+
+		if (negate) {
+			coord = -coord;
+		}
+
+		return coord;
+	}
 }
