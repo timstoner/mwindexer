@@ -13,10 +13,11 @@
 
 	<types>
 
-		<fieldType name="id" class="solr.UUIDField" indexed="true" />
+		<fieldType name="id" class="solr.UUIDField" indexed="false" />
 
 		<fieldType name="string" class="solr.StrField"
 			sortMissingLast="true" omitNorms="true" />
+		<fieldType name="facet" class="solr.StrField" indexed="true" />
 
 		<!-- boolean type: "true" or "false" -->
 		<fieldType name="boolean" class="solr.BoolField"
@@ -112,6 +113,16 @@
 			<filter class="solr.LowerCaseFilterFactory" />
 		</fieldType>
 
+    <fieldType name="text_suggest" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+            <tokenizer class="solr.UAX29URLEmailTokenizerFactory"/>
+            <filter class="solr.StopFilterFactory" ignoreCase="true" />
+            <filter class="solr.LowerCaseFilterFactory"/>
+            <filter class="solr.ASCIIFoldingFilterFactory"/>
+            <filter class="solr.EnglishPossessiveFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
 		<!-- A text field with defaults appropriate for English: it tokenizes with 
 			StandardTokenizer, removes English stop words (lang/stopwords_en.txt), down 
 			cases, protects words from protwords.txt, and finally applies Porter's stemming. 
@@ -146,12 +157,12 @@
 	</types>
 
 	<fields>
-		<field name="id" type="id" stored="true" indexed="true"
-			required="true" />
+		<field name="id" type="string" stored="true" indexed="true" required="true" />
 
-		<field name="text" type="text_general" stored="true" indexed="true"
+		<field name="text" type="text_general" stored="false" indexed="true"
 			multiValued="true" />
 
+		<!-- SolrCloud version field -->
 		<field name="_version_" type="long" indexed="true" stored="true" />
 
 		<!-- Dynamic field definitions allow using convention over configuration 
@@ -181,7 +192,7 @@
 		<dynamicField name="*_t" type="text_general" indexed="true"
 			stored="true" />
 
-		<dynamicField name="*_txt" type="text_general" indexed="true"
+		<dynamicField name="*_ts" type="text_general" indexed="true"
 			stored="true" multiValued="true" />
 
 		<dynamicField name="*_en" type="text_en" indexed="true"
@@ -207,16 +218,13 @@
 
 		<!-- Type used to index the lat and lon components for the "location" FieldType -->
 		<dynamicField name="*_coordinate" type="tdouble" indexed="true"
-			stored="false" />
+			stored="true" />
 
 		<dynamicField name="*_dt" type="date" indexed="true"
 			stored="true" />
 
 		<dynamicField name="*_dts" type="date" indexed="true"
 			stored="true" multiValued="true" />
-
-		<dynamicField name="*_p" type="location" indexed="true"
-			stored="true" />
 
 		<!-- some trie-coded dynamic fields for faster range queries -->
 		<dynamicField name="*_ti" type="tint" indexed="true"
@@ -226,7 +234,7 @@
 			stored="true" />
 
 		<dynamicField name="*_tf" type="tfloat" indexed="true"
-			stored="true" />
+			stored="false" />
 
 		<dynamicField name="*_td" type="tdouble" indexed="true"
 			stored="true" />
@@ -243,7 +251,7 @@
 		<dynamicField name="attr_*" type="text_general" indexed="true"
 			stored="true" multiValued="true" />
 
-		<dynamicField name="random_*" type="random" />
+		<dynamicField name="random_*" type="random" stored="false" />
 
 		<copyField source="*_s" dest="text" />
 
@@ -256,9 +264,5 @@
 	</fields>
 
 	<uniqueKey>id</uniqueKey>
-
-	<defaultSearchField>text</defaultSearchField>
-
-	<solrQueryParser defaultOperator="OR" />
 
 </schema>
