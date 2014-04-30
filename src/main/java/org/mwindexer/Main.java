@@ -3,6 +3,7 @@ package org.mwindexer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+import java.util.Scanner;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -31,10 +32,11 @@ public class Main {
 	private static Logger LOG = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		new Main(args);
+		Main main = new Main();
+		main.execute(args);
 	}
 
-	public Main(String[] args) {
+	public void execute(String[] args) {
 		LOG.info("MediaWiki Dump File Indexer");
 
 		// parse the command line options
@@ -44,6 +46,12 @@ public class Main {
 		// get the user's input file path
 		String inputPath = cl.getOptionValue("i");
 
+		String countDownTime = cl.getOptionValue("c");
+		if (countDownTime != null) {
+			int count = Integer.parseInt(countDownTime);
+			showCountDownTimer(count);
+		}
+
 		// if a solr url was specified, overwrite the default
 		if (solrURL != null) {
 			LOG.info("Solr URL: " + solrURL);
@@ -52,6 +60,10 @@ public class Main {
 
 		// create the input stream
 		InputStream inputStream = getInputStream(inputPath);
+		 readInputStream(inputStream);
+	}
+
+	public void readInputStream(InputStream inputStream) {
 
 		// instantiate the application context using a classpath
 		// applicationContext.xml file
@@ -117,6 +129,10 @@ public class Main {
 				"Path to input file (.xml/.bz2/.gz)");
 		options.addOption(inputFileOption);
 
+		Option countDownTimer = new Option("c", "countdown", true,
+				"Time in seconds to countdown before starting");
+		options.addOption(countDownTimer);
+
 		Option filterOption = new Option("f", "filter", true,
 				"Filters information from the dump");
 
@@ -169,5 +185,18 @@ public class Main {
 		}
 
 		return writer;
+	}
+
+	private void showCountDownTimer(int count) {
+		LOG.info("Starting Data Dump Indexer in:");
+		try {
+			for (int i = count; i > 0; i--) {
+				LOG.info(String.valueOf(i));
+				Thread.sleep(1000);
+			}
+		} catch (InterruptedException e) {
+			LOG.warn("Problem sleeping...", e);
+		}
+
 	}
 }

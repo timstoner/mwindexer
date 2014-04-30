@@ -368,13 +368,11 @@ public class XmlDumpReader extends DefaultHandler {
 	// -----------
 
 	void openPage() {
-		LOG.debug("openPage");
 		page = new Page();
 		pageSent = false;
 	}
 
 	void closePage() throws IOException {
-		LOG.debug("closePage");
 		if (pageSent)
 			dumpWriter.writeEndPage();
 		page = null;

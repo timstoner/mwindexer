@@ -18,8 +18,10 @@
 		<property name="textIndexers">
 			<list>
 				<ref bean="coordIndexer" />
+				<ref bean="categoryIndexer" />
 			</list>
 		</property>
+		<property name="threadPoolExecutor" ref="threadPoolExecutor" />
 	</bean>
 
 	<!-- Filters 'decorate' dump writers -->
@@ -32,7 +34,7 @@
 	<bean id="multiWriter" class="org.mwindexer.indexer.MultiWriter">
 		<property name="writers">
 			<list>
-				<ref bean="solrWriter" />
+				<ref bean="progressFilter" />
 			</list>
 		</property>
 	</bean>
@@ -42,5 +44,21 @@
 		<property name="dumpWriter" ref="multiWriter" />
 	</bean>
 
-
+	<bean id="threadPoolExecutor" class="java.util.concurrent.ThreadPoolExecutor">
+		<constructor-arg name="corePoolSize" value="${threadpool.minsize}" />
+		<constructor-arg name="maximumPoolSize" value="${threadpool.maxsize}" />
+		<constructor-arg name="keepAliveTime" value="${threadpool.keepalivetime}" />
+		<constructor-arg name="unit">
+			<bean class="java.util.concurrent.TimeUnit" factory-method="valueOf">
+				<constructor-arg>
+					<value>${threadpool.timeunit}</value>
+				</constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg name="workQueue">
+			<bean class="java.util.concurrent.LinkedBlockingQueue">
+				<constructor-arg name="capacity" value="100" />
+			</bean>
+		</constructor-arg>
+	</bean>
 </beans>

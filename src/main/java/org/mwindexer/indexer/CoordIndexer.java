@@ -40,12 +40,20 @@ public class CoordIndexer implements TextIndexer {
 
 		// {{Coord|display=title|43.096569|-75.231887}}
 
+		int index;
 		while (matcher.find()) {
 			group = matcher.group();
 			LOG.debug("Coord Found: {}", group);
 
 			// strip off brackets
 			group = group.substring(2, group.length() - 2);
+
+			index = group.indexOf("{{");
+			if (index != -1) {
+				// truncate anything after the brackets
+				group = group.substring(0, index);
+			}
+
 			groups.add(group);
 		}
 
@@ -58,12 +66,14 @@ public class CoordIndexer implements TextIndexer {
 	private List<String> parseCoordMatches(List<String> matches) {
 		List<String> latLons = new LinkedList<>();
 
-		for (String match : matches) {
+		match: for (String match : matches) {
 			boolean missing = checkForMissing(match);
 			if (missing) {
 				// most likely {{coord missing...}}
 				continue;
 			}
+
+			// LOG.info(match);
 
 			List<String> buffer = convertTemplateToBuffer(match);
 
@@ -77,6 +87,16 @@ public class CoordIndexer implements TextIndexer {
 				continue;
 			}
 
+			for (String b : buffer) {
+				if (b.equalsIgnoreCase("LAT") || b.equalsIgnoreCase("LON")) {
+					// if this match has a LAT/LON placeholder, continue onto
+					// the next match
+					continue match;
+				}
+			}
+
+			// printBuffer(buffer);
+
 			int midpoint = buffer.size() / 2;
 
 			try {
@@ -89,8 +109,8 @@ public class CoordIndexer implements TextIndexer {
 				LOG.debug("Coord: {}", coord);
 
 				latLons.add(coord);
-			} catch (NumberFormatException e) {
-				LOG.warn("Invalid Coordinates", e);
+			} catch (Exception e) {
+				LOG.warn("Invalid Coordinates match:" + match, e);
 			}
 		}
 
@@ -130,13 +150,15 @@ public class CoordIndexer implements TextIndexer {
 	private double buildLatitudeCoordinate(List<String> buffer) {
 		boolean negate = false;
 		int lastIndex = buffer.size() - 1;
-		if (buffer.get(lastIndex).equals("S")) {
+		String lastElement = buffer.get(lastIndex);
+		lastElement = lastElement.trim();
+
+		if (lastElement.equals("S")) {
 			negate = true;
 		}
 
 		// remove trailing cardinal direction
-		if (buffer.get(lastIndex).equals("N")
-				|| buffer.get(lastIndex).equals("S")) {
+		if (lastElement.equals("N") || lastElement.equals("S")) {
 			buffer.remove(lastIndex);
 		}
 
@@ -147,14 +169,15 @@ public class CoordIndexer implements TextIndexer {
 	private double buildLongitudeCoordinate(List<String> buffer) {
 		boolean negate = false;
 		int lastIndex = buffer.size() - 1;
+		String lastElement = buffer.get(lastIndex);
+		lastElement = lastElement.trim();
 
-		if (buffer.get(lastIndex).equals("W")) {
+		if (lastElement.equals("W")) {
 			negate = true;
 		}
 
 		// remove trailing cardinal direction
-		if (buffer.get(lastIndex).equals("E")
-				|| buffer.get(lastIndex).equals("W")) {
+		if (lastElement.equals("E") || lastElement.equals("W")) {
 			buffer.remove(lastIndex);
 		}
 
@@ -182,5 +205,13 @@ public class CoordIndexer implements TextIndexer {
 		}
 
 		return coord;
+	}
+
+	private void printBuffer(List<String> buffer) {
+		StringBuilder sb = new StringBuilder();
+		for (String b : buffer) {
+			sb.append(b).append(" ");
+		}
+		LOG.info(sb.toString());
 	}
 }

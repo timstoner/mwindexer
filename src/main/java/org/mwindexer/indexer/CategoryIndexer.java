@@ -20,6 +20,7 @@ public class CategoryIndexer implements TextIndexer {
 	private String fieldName;
 
 	public CategoryIndexer(String pattern, String fieldName) {
+		LOG.info("Category Indexer, {} {}", pattern, fieldName);
 		categoryPattern = Pattern.compile(pattern);
 		this.fieldName = fieldName;
 	}
@@ -30,15 +31,22 @@ public class CategoryIndexer implements TextIndexer {
 		Matcher matcher = categoryPattern.matcher(text);
 		List<String> groups = new LinkedList<>();
 		String group;
+		try {
 
-		while (matcher.find()) {
-			group = matcher.group();
-			LOG.debug("Coord Found: {}", group);
+			while (matcher.find()) {
+				group = matcher.group();
+//				LOG.debug("Category Found: {}", group);
 
-			// strip off braces
-			// [[Category:Utica, New York| ]]
-			group = group.substring(2, group.length() - 2);
-			groups.add(group);
+				if (group.contains("[")) {
+					// strip off braces
+					// [[Category:Utica, New York| ]]
+					group = group.substring(2, group.length() - 2);
+					groups.add(group);
+				}
+			}
+		} catch (Exception e) {
+			LOG.warn("Problem parsing text: " + text, e);
+			System.exit(-1);
 		}
 
 		List<String> categories = parseCategoryGroups(groups);
@@ -61,7 +69,7 @@ public class CategoryIndexer implements TextIndexer {
 
 			// strip off the Category:
 			// strip off anything after |
-			category = group.substring(start, end);
+			category = group.substring(start + 1, end);
 			LOG.debug("Category {}", category);
 			categories.add(category);
 		}
