@@ -121,7 +121,7 @@ public class SolrDumpWriter implements DumpWriter {
 	@Override
 	public void writeStartPage(Page page) throws IOException {
 		currentArticle = new Article();
-		currentArticle.setPage(page);
+		currentArticle.Page = page;
 
 		if (page.isRedirect) {
 			handleArticle = false;
