@@ -34,7 +34,8 @@ public class MainTest {
 		LOG.info("testing indexer");
 		String args[] = { "-i", "src/test/resources/sample.xml" };
 
-//		Main main = new Main(args);
+		Main main = new Main();
+		main.execute(args);
 
 	}
 
@@ -42,8 +43,8 @@ public class MainTest {
 	public void testAddLatestFilter() {
 		MockDumpWriter writer = new MockDumpWriter();
 		String filter = "latest";
-		
-//		Main main = new Main();
+
+		// Main main = new Main();
 	}
 
 }

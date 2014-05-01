@@ -3,7 +3,6 @@ package org.mwindexer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
-import java.util.Scanner;
 
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
@@ -60,14 +59,20 @@ public class Main {
 
 		// create the input stream
 		InputStream inputStream = getInputStream(inputPath);
-		 readInputStream(inputStream);
+		if (inputStream != null) {
+			readInputStream(inputStream);
+		} else {
+			LOG.error("Input Stream is null, exiting");
+			System.exit(-1);
+		}
 	}
 
 	public void readInputStream(InputStream inputStream) {
 
 		// instantiate the application context using a classpath
 		// applicationContext.xml file
-		LOG.debug("Initializing Application Context");
+		LOG.info("Initializing Application Context");
+		DateTime startDateTime = DateTime.now();
 
 		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				"applicationContext.xml")) {
@@ -77,7 +82,6 @@ public class Main {
 
 			// notify user we are starting data ingest
 			LOG.info("Reading dump input");
-			DateTime startDateTime = DateTime.now();
 
 			try {
 				reader.setInputStream(inputStream);
@@ -85,15 +89,14 @@ public class Main {
 			} catch (IOException e) {
 				LOG.error("Problem reading dump", e);
 			}
-
-			DateTime endDateTime = DateTime.now();
-			// calculate how long the process took
-			Interval interval = new Interval(startDateTime, endDateTime);
-
-			LOG.info("Total Time: "
-					+ interval.toDuration().getStandardSeconds());
-			LOG.info("All done.");
 		}
+		
+		DateTime endDateTime = DateTime.now();
+		// calculate how long the process took
+		Interval interval = new Interval(startDateTime, endDateTime);
+
+		LOG.info("Total Time: " + interval.toDuration().getStandardSeconds());
+		LOG.info("All done.");
 	}
 
 	public InputStream getInputStream(String path) {

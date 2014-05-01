@@ -30,16 +30,24 @@ public class Tools {
 	}
 
 	public static InputStream openInputFile(String arg) throws IOException {
-		if (arg.equals("-"))
-			return openStandardInput();
-		InputStream infile = new BufferedInputStream(new FileInputStream(arg),
-				IN_BUF_SZ);
-		if (arg.endsWith(".gz"))
-			return new GZIPInputStream(infile);
-		else if (arg.endsWith(".bz2"))
-			return openBZip2Stream(infile);
-		else
-			return infile;
+		LOG.info("Opening Input Stream: " + arg);
+		InputStream inputStream;
+
+		if (arg.equals("-")) {
+			inputStream = openStandardInput();
+		} else {
+			InputStream infile = new BufferedInputStream(new FileInputStream(
+					arg), IN_BUF_SZ);
+			if (arg.endsWith(".gz")) {
+				inputStream = new GZIPInputStream(infile);
+			} else if (arg.endsWith(".bz2")) {
+				inputStream = openBZip2Stream(infile);
+			} else {
+				inputStream = infile;
+			}
+		}
+
+		return inputStream;
 	}
 
 	static InputStream openStandardInput() throws IOException {

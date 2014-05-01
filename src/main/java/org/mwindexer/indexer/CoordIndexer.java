@@ -1,5 +1,10 @@
 package org.mwindexer.indexer;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +15,7 @@ import java.util.regex.Pattern;
 import org.mwindexer.TextIndexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 
 public class CoordIndexer implements TextIndexer {
 
@@ -20,7 +26,15 @@ public class CoordIndexer implements TextIndexer {
 	 */
 	private String fieldName;
 
+	/**
+	 * The regular expression pattern that matches coord templates
+	 */
 	private Pattern coordPattern;
+
+	/**
+	 * A writer that takes errors
+	 */
+	private BufferedWriter errorLog;
 
 	public CoordIndexer(String pattern, String fieldName) {
 		this.fieldName = fieldName;
@@ -28,6 +42,13 @@ public class CoordIndexer implements TextIndexer {
 		LOG.debug("Pattern: {}", pattern);
 		// compile the pattern in the constructor for performance
 		coordPattern = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+
+		try {
+			File errorFile = new File("coordindexer.log");
+			errorLog = new BufferedWriter(new FileWriter(errorFile));
+		} catch (IOException e) {
+			LOG.warn("Error creating errorlog", e);
+		}
 	}
 
 	@Override
@@ -73,8 +94,6 @@ public class CoordIndexer implements TextIndexer {
 				continue;
 			}
 
-			// LOG.info(match);
-
 			List<String> buffer = convertTemplateToBuffer(match);
 
 			if (buffer.size() % 2 != 0) {
@@ -88,14 +107,12 @@ public class CoordIndexer implements TextIndexer {
 			}
 
 			for (String b : buffer) {
-				if (b.equalsIgnoreCase("LAT") || b.equalsIgnoreCase("LON")) {
+				if (b.startsWith("LAT") || b.startsWith("LON")) {
 					// if this match has a LAT/LON placeholder, continue onto
 					// the next match
 					continue match;
 				}
 			}
-
-			// printBuffer(buffer);
 
 			int midpoint = buffer.size() / 2;
 
@@ -110,6 +127,7 @@ public class CoordIndexer implements TextIndexer {
 
 				latLons.add(coord);
 			} catch (Exception e) {
+				writeErrorLog(match);
 				LOG.warn("Invalid Coordinates match:" + match, e);
 			}
 		}
@@ -132,9 +150,15 @@ public class CoordIndexer implements TextIndexer {
 		String[] elements = template.split("\\|");
 		List<String> buffer = new LinkedList<>();
 		boolean add = true;
+
 		for (String element : elements) {
-			if (element.equalsIgnoreCase("coord") || element.contains("=")
-					|| element.contains(":")) {
+			// remove excess spaces on either side of element
+			element = element.trim();
+
+			// remove non coordinate information from coord template
+			if (element.contains("coord") || element.contains("Coord")
+					|| element.contains("=") || element.contains(":")
+					|| element.isEmpty()) {
 				add = false;
 			} else {
 				add = true;
@@ -207,11 +231,12 @@ public class CoordIndexer implements TextIndexer {
 		return coord;
 	}
 
-	private void printBuffer(List<String> buffer) {
-		StringBuilder sb = new StringBuilder();
-		for (String b : buffer) {
-			sb.append(b).append(" ");
+	private void writeErrorLog(String msg) {
+		try {
+			errorLog.write(msg);
+			errorLog.write(System.getProperty("line.separator"));
+		} catch (IOException e) {
+			LOG.error("Problem writing to the error log", e);
 		}
-		LOG.info(sb.toString());
 	}
 }

@@ -1,11 +1,9 @@
 package org.mwindexer.indexer;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -27,6 +25,8 @@ import org.slf4j.LoggerFactory;
 public class SolrDumpWriter implements DumpWriter {
 	private static Logger LOG = LoggerFactory.getLogger(SolrDumpWriter.class);
 
+	private static boolean DEBUG = true;
+
 	private SolrServer solrServer;
 
 	private SolrFieldMap fieldMap;
@@ -36,8 +36,6 @@ public class SolrDumpWriter implements DumpWriter {
 	private ThreadPoolExecutor executor;
 
 	private int bufferSize;
-
-	// private Runnable worker;
 
 	private List<Article> articles;
 
@@ -183,7 +181,7 @@ public class SolrDumpWriter implements DumpWriter {
 
 	private void addSolrDocuments(List<SolrInputDocument> doc) {
 		// solr complains if you add 0 documents 'missing content stream'
-		if (doc.size() > 0) {
+		if (doc.size() > 0 && !DEBUG) {
 			try {
 				UpdateResponse response = solrServer.add(doc);
 				LOG.debug("Solr Add Response {}", response);
@@ -194,12 +192,14 @@ public class SolrDumpWriter implements DumpWriter {
 	}
 
 	private void commitSolrDocuments() {
-		UpdateResponse response;
-		try {
-			response = solrServer.commit();
-			LOG.debug("Solr Commit Response {}", response);
-		} catch (SolrServerException | IOException e) {
-			LOG.error("Problem commiting documents to solr server", e);
+		if (!DEBUG) {
+			UpdateResponse response;
+			try {
+				response = solrServer.commit();
+				LOG.debug("Solr Commit Response {}", response);
+			} catch (SolrServerException | IOException e) {
+				LOG.error("Problem commiting documents to solr server", e);
+			}
 		}
 	}
 
