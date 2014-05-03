@@ -27,8 +27,6 @@ package org.mwindexer.indexer;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -40,7 +38,6 @@ import org.mwindexer.model.Contributor;
 import org.mwindexer.model.Page;
 import org.mwindexer.model.Revision;
 import org.mwindexer.model.Siteinfo;
-import org.mwindexer.model.Title;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -130,54 +127,6 @@ public class XmlDumpReader extends DefaultHandler {
 		abortFlag = true;
 	}
 
-	// --------------------------
-	// SAX handler interface methods:
-
-	private static final Map<String, String> startElements = new HashMap<String, String>(
-			64);
-	private static final Map<String, String> endElements = new HashMap<String, String>(
-			64);
-	static {
-		startElements.put("revision", "revision");
-		startElements.put("contributor", "contributor");
-		startElements.put("page", "page");
-		startElements.put("mediawiki", "mediawiki");
-		startElements.put("siteinfo", "siteinfo");
-		startElements.put("namespaces", "namespaces");
-		startElements.put("namespace", "namespace");
-
-		endElements.put("ThreadSubject", "ThreadSubject");
-		endElements.put("ThreadParent", "ThreadParent");
-		endElements.put("ThreadAncestor", "ThreadAncestor");
-		endElements.put("ThreadPage", "ThreadPage");
-		endElements.put("ThreadID", "ThreadID");
-		endElements.put("ThreadSummaryPage", "ThreadSummaryPage");
-		endElements.put("ThreadAuthor", "ThreadAuthor");
-		endElements.put("ThreadEditStatus", "ThreadEditStatus");
-		endElements.put("ThreadType", "ThreadType");
-		endElements.put("base", "base");
-		endElements.put("case", "case");
-		endElements.put("comment", "comment");
-		endElements.put("contributor", "contributor");
-		endElements.put("generator", "generator");
-		endElements.put("id", "id");
-		endElements.put("ip", "ip");
-		endElements.put("mediawiki", "mediawiki");
-		endElements.put("minor", "minor");
-		endElements.put("namespaces", "namespaces");
-		endElements.put("namespace", "namespace");
-		endElements.put("page", "page");
-		endElements.put("redirect", "redirect");
-		endElements.put("restrictions", "restrictions");
-		endElements.put("revision", "revision");
-		endElements.put("siteinfo", "siteinfo");
-		endElements.put("sitename", "sitename");
-		endElements.put("text", "text");
-		endElements.put("timestamp", "timestamp");
-		endElements.put("title", "title");
-		endElements.put("username", "username");
-	}
-
 	public void startElement(String uri, String localname, String qName,
 			Attributes attributes) throws SAXException {
 		// Clear the buffer for character data; we'll initialize it
@@ -194,28 +143,29 @@ public class XmlDumpReader extends DefaultHandler {
 		String d = attributes.getValue("deleted");
 		deleted = (d != null && d.equals("deleted"));
 
-		try {
-			qName = startElements.get(qName);
-			if (qName == null)
-				return;
-			// frequent tags:
-			if (qName == "revision")
-				openRevision();
-			else if (qName == "contributor")
-				openContributor();
-			else if (qName == "page")
-				openPage();
-			// rare tags:
-			else if (qName == "mediawiki")
-				openMediaWiki();
-			else if (qName == "siteinfo")
-				openSiteinfo();
-			else if (qName == "namespaces")
-				openNamespaces();
-			else if (qName == "namespace")
-				openNamespace(attributes);
-		} catch (IOException e) {
-			throw new SAXException(e);
+		// frequent tags:
+		switch (qName) {
+		case "revision":
+			openRevision();
+			break;
+		case "contributor":
+			openContributor();
+			break;
+		case "page":
+			openPage();
+			break;
+		case "mediawiki":
+			openMediaWiki();
+			break;
+		case "siteinfo":
+			openSiteinfo();
+			break;
+		case "namespaces":
+			openNamespaces();
+			break;
+		case "namespace":
+			openNamespace(attributes);
+			break;
 		}
 	}
 
@@ -235,81 +185,87 @@ public class XmlDumpReader extends DefaultHandler {
 
 	public void endElement(String uri, String localname, String qName)
 			throws SAXException {
+		switch (qName) {
+		case "id":
+			readId();
+			break;
+		case "revision":
+			closeRevision();
+			break;
+		case "timestamp":
+			readTimestamp();
+			break;
+		case "text":
+			readText();
+			break;
+		case "contributor":
+			closeContributor();
+			break;
+		case "username":
+			readUsername();
+			break;
+		case "ip":
+			readIp();
+			break;
+		case "comment":
+			readComment();
+			break;
+		case "minor":
+			readMinor();
+			break;
+		case "page":
+			closePage();
+			break;
+		case "title":
+			readTitle();
+			break;
+		case "restrictions":
+			readRestrictions();
+			break;
+		case "redirect":
+			readRedirect();
+			break;
+		case "mediawiki":
+			closeMediaWiki();
+			break;
+		case "siteinfo":
+			closeSiteinfo();
+			break;
+		case "base":
+			readBase();
+			break;
+		case "generator":
+			readGenerator();
+			break;
+		case "case":
+			readCase();
+			break;
+		case "namespaces":
+			closeNamespaces();
+			break;
+		case "namespace":
+			closeNamespace();
+			break;
+		}
+
+	}
+
+	void openMediaWiki() {
 		try {
-			qName = endElements.get(qName);
-			if (qName == null)
-				return;
-			// frequent tags:
-			if (qName == "id")
-				readId();
-			else if (qName == "revision")
-				closeRevision();
-			else if (qName == "timestamp")
-				readTimestamp();
-			else if (qName == "text")
-				readText();
-			else if (qName == "contributor")
-				closeContributor();
-			else if (qName == "username")
-				readUsername();
-			else if (qName == "ip")
-				readIp();
-			else if (qName == "comment")
-				readComment();
-			else if (qName == "minor")
-				readMinor();
-			else if (qName == "page")
-				closePage();
-			else if (qName == "title")
-				readTitle();
-			else if (qName == "restrictions")
-				readRestrictions();
-			else if (qName == "redirect")
-				readRedirect();
-			// rare tags:
-			else if (qName.startsWith("Thread"))
-				threadAttribute(qName);
-			else if (qName == "mediawiki")
-				closeMediaWiki();
-			else if (qName == "siteinfo")
-				closeSiteinfo();
-			else if (qName == "sitename")
-				readSitename();
-			else if (qName == "base")
-				readBase();
-			else if (qName == "generator")
-				readGenerator();
-			else if (qName == "case")
-				readCase();
-			else if (qName == "namespaces")
-				closeNamespaces();
-			else if (qName == "namespace")
-				closeNamespace();
-			// else throw(SAXException)new
-			// SAXException("Unrecognised "+qName+"(substring "+qName.length()+qName.substring(0,6)+")");
+			siteinfo = null;
+			dumpWriter.writeStartWiki();
 		} catch (IOException e) {
-			throw (SAXException) new SAXException(e.getMessage()).initCause(e);
+			LOG.warn("Problem", e);
 		}
 	}
 
-	// ----------
-
-	void threadAttribute(String attrib) throws IOException {
-		if (attrib.equals("ThreadPage")) // parse title
-			page.DiscussionThreadingInfo.put(attrib, new Title(
-					bufferContents(), siteinfo.Namespaces));
-		else
-			page.DiscussionThreadingInfo.put(attrib, bufferContents());
-	}
-
-	void openMediaWiki() throws IOException {
-		siteinfo = null;
-		dumpWriter.writeStartWiki();
-	}
-
-	void closeMediaWiki() throws IOException {
-		dumpWriter.writeEndWiki();
-		siteinfo = null;
+	void closeMediaWiki() {
+		try {
+			dumpWriter.writeEndWiki();
+			siteinfo = null;
+		} catch (IOException e) {
+			LOG.warn("Problem", e);
+		}
 	}
 
 	// ------------------
@@ -318,8 +274,12 @@ public class XmlDumpReader extends DefaultHandler {
 		siteinfo = new Siteinfo();
 	}
 
-	void closeSiteinfo() throws IOException {
-		dumpWriter.writeSiteinfo(siteinfo);
+	void closeSiteinfo() {
+		try {
+			dumpWriter.writeSiteinfo(siteinfo);
+		} catch (IOException e) {
+			LOG.warn("Problem", e);
+		}
 	}
 
 	private String bufferContentsOrNull() {
@@ -372,14 +332,23 @@ public class XmlDumpReader extends DefaultHandler {
 		pageSent = false;
 	}
 
-	void closePage() throws IOException {
-		if (pageSent)
-			dumpWriter.writeEndPage();
-		page = null;
+	void closePage() {
+		try {
+			if (pageSent)
+				dumpWriter.writeEndPage();
+			page = null;
+		} catch (IOException e) {
+			LOG.warn("Problem", e);
+		}
 	}
 
 	void readTitle() {
-		page.Title = new Title(bufferContents(), siteinfo.Namespaces);
+		page.Title = bufferContents();
+	}
+
+	void readNs() {
+		int ns = Integer.parseInt(bufferContents());
+		page.Ns = ns;
 	}
 
 	void readId() {
@@ -400,23 +369,31 @@ public class XmlDumpReader extends DefaultHandler {
 	}
 
 	void readRestrictions() {
-		page.Restrictions = bufferContents();
+//		page.Restrictions = bufferContents();
 	}
 
 	// ------
 
-	void openRevision() throws IOException {
-		if (!pageSent) {
-			dumpWriter.writeStartPage(page);
-			pageSent = true;
-		}
+	void openRevision() {
+		try {
+			if (!pageSent) {
+				dumpWriter.writeStartPage(page);
+				pageSent = true;
+			}
 
-		rev = new Revision();
+			rev = new Revision();
+		} catch (IOException e) {
+			LOG.warn("Problem", e);
+		}
 	}
 
-	void closeRevision() throws IOException {
-		dumpWriter.writeRevision(rev);
-		rev = null;
+	void closeRevision() {
+		try {
+			dumpWriter.writeRevision(rev);
+			rev = null;
+		} catch (IOException e) {
+			LOG.warn("Problem", e);
+		}
 	}
 
 	void readTimestamp() {

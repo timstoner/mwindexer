@@ -27,6 +27,7 @@ package org.mwindexer.model;
 
 import org.mwindexer.indexer.NamespaceSet;
 
+@Deprecated
 public class Title {
 	public Integer Namespace;
 	public String Text;

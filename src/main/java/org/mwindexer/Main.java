@@ -17,18 +17,19 @@ import org.mwindexer.filters.ExactListFilter;
 import org.mwindexer.filters.LatestFilter;
 import org.mwindexer.filters.ListFilter;
 import org.mwindexer.filters.NamespaceFilter;
-import org.mwindexer.filters.NotalkFilter;
 import org.mwindexer.filters.RevisionListFilter;
 import org.mwindexer.filters.TitleMatchFilter;
 import org.mwindexer.indexer.XmlDumpReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
 	private static Logger LOG = LoggerFactory.getLogger(Main.class);
+
+	private static ApplicationContext context;
 
 	public static void main(String[] args) {
 		Main main = new Main();
@@ -74,23 +75,21 @@ public class Main {
 		LOG.info("Initializing Application Context");
 		DateTime startDateTime = DateTime.now();
 
-		try (AbstractApplicationContext context = new ClassPathXmlApplicationContext(
-				"applicationContext.xml")) {
-			// get the configured dump reader
-			XmlDumpReader reader = context.getBean("xmlReader",
-					XmlDumpReader.class);
+		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		// get the configured dump reader
+		XmlDumpReader reader = context
+				.getBean("xmlReader", XmlDumpReader.class);
 
-			// notify user we are starting data ingest
-			LOG.info("Reading dump input");
+		// notify user we are starting data ingest
+		LOG.info("Reading dump input");
 
-			try {
-				reader.setInputStream(inputStream);
-				reader.readDump();
-			} catch (IOException e) {
-				LOG.error("Problem reading dump", e);
-			}
+		try {
+			reader.setInputStream(inputStream);
+			reader.readDump();
+		} catch (IOException e) {
+			LOG.error("Problem reading dump", e);
 		}
-		
+
 		DateTime endDateTime = DateTime.now();
 		// calculate how long the process took
 		Interval interval = new Interval(startDateTime, endDateTime);
@@ -159,9 +158,6 @@ public class Main {
 		switch (filter) {
 		case "latest":
 			writer = new LatestFilter(sink);
-			break;
-		case "notalk":
-			writer = new NotalkFilter(sink);
 			break;
 		case "namespace":
 			writer = new NamespaceFilter(sink, param);

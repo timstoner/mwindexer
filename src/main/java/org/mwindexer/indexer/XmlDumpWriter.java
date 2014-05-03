@@ -96,8 +96,8 @@ public class XmlDumpWriter implements DumpWriter {
 		writer.textElement("title", page.Title.toString());
 		if (page.Id != 0)
 			writer.textElement("id", Integer.toString(page.Id));
-		if (page.Restrictions != null && page.Restrictions.length() != 0)
-			writer.textElement("restrictions", page.Restrictions);
+//		if (page.Restrictions != null && page.Restrictions.length() != 0)
+//			writer.textElement("restrictions", page.Restrictions);
 	}
 
 	public void writeEndPage() throws IOException {

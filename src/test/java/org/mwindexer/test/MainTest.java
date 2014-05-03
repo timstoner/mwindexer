@@ -35,16 +35,8 @@ public class MainTest {
 		String args[] = { "-i", "src/test/resources/sample.xml" };
 
 		Main main = new Main();
-		main.execute(args);
+		// main.execute(args);
 
-	}
-
-	@Test
-	public void testAddLatestFilter() {
-		MockDumpWriter writer = new MockDumpWriter();
-		String filter = "latest";
-
-		// Main main = new Main();
 	}
 
 }

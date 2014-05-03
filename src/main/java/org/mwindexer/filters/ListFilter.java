@@ -36,6 +36,7 @@ import org.mwindexer.model.Page;
 
 public class ListFilter extends PageFilter {
 	protected HashMap<String, String> list;
+	private static final String TALK_PREFIX = "Talk:";
 
 	public ListFilter(DumpWriter sink, String sourceFileName)
 			throws IOException {
@@ -60,7 +61,13 @@ public class ListFilter extends PageFilter {
 	}
 
 	protected boolean pass(Page page) {
-		return list.containsKey(page.Title.subjectPage().toString())
-				|| list.containsKey(page.Title.talkPage().toString());
+		String title = page.Title;
+		int index;
+
+		if ((index = page.Title.indexOf(TALK_PREFIX)) != -1) {
+			title = page.Title.substring(index + TALK_PREFIX.length());
+		}
+
+		return list.containsKey(title);
 	}
 }

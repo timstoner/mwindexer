@@ -1,0 +1,17 @@
+<mediawiki>
+	<page>
+		<title>Sample</title>
+		<ns>0</ns>
+		<id>1</id>
+		<revision>
+			<id>651</id>
+			<timestamp>2010-08-26T22:38:36Z</timestamp>
+			<contributor>
+				<username>MyUserName</username>
+				<id>651651651</id>
+			</contributor>
+			<comment>comment on the sample page</comment>
+			<text xml:space="preserve">this is a sample page for testing</text>
+		</revision>
+	</page>
+</mediawiki>

@@ -25,18 +25,18 @@
 
 package org.mwindexer.model;
 
-import java.util.Hashtable;
-
 public class Page {
-	public Title Title;
+	public String Title;
+	public int Ns;
 	public int Id;
 	public boolean isRedirect = false;
-	public Hashtable<String, Object> DiscussionThreadingInfo;
-	public String Restrictions;
+
+	// public Hashtable<String, Object> DiscussionThreadingInfo;
+	// public String Restrictions;
 
 	public Page() {
 		// <restrictions> is optional...
-		Restrictions = "";
-		DiscussionThreadingInfo = new Hashtable<String, Object>();
+		// Restrictions = "";
+		// DiscussionThreadingInfo = new Hashtable<String, Object>();
 	}
 }

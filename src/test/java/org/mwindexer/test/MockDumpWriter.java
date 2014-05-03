@@ -13,6 +13,10 @@ public class MockDumpWriter implements DumpWriter {
 
 	private boolean revisionPassed = false;
 
+	private Page page;
+
+	private Revision revision;
+
 	@Override
 	public void close() throws IOException {
 
@@ -35,7 +39,7 @@ public class MockDumpWriter implements DumpWriter {
 
 	@Override
 	public void writeStartPage(Page page) throws IOException {
-
+		this.page = page;
 	}
 
 	@Override
@@ -46,6 +50,7 @@ public class MockDumpWriter implements DumpWriter {
 	@Override
 	public void writeRevision(Revision revision) throws IOException {
 		revisionPassed = true;
+		this.revision = revision;
 	}
 
 	public boolean isPagePassed() {
@@ -54,6 +59,22 @@ public class MockDumpWriter implements DumpWriter {
 
 	public boolean isRevisionPassed() {
 		return revisionPassed;
+	}
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
+	}
+
+	public Revision getRevision() {
+		return revision;
+	}
+
+	public void setRevision(Revision revision) {
+		this.revision = revision;
 	}
 
 }

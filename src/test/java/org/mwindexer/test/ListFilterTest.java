@@ -7,9 +7,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mwindexer.filters.ListFilter;
-import org.mwindexer.indexer.NamespaceSet;
 import org.mwindexer.model.Page;
-import org.mwindexer.model.Title;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,14 +18,8 @@ public class ListFilterTest {
 
 	private MockDumpWriter writer;
 
-	private NamespaceSet namespaceSet;
-
 	@Before
 	public void setup() {
-		namespaceSet = new NamespaceSet();
-		namespaceSet.add(0, "");
-		namespaceSet.add(1, "Talk");
-
 		writer = new MockDumpWriter();
 		try {
 			filter = new ListFilter(writer,
@@ -40,7 +32,8 @@ public class ListFilterTest {
 	@Test
 	public void testPagePermitted() {
 		Page page = new Page();
-		page.Title = new Title(0, "permitted", namespaceSet);
+		page.Title = "permitted";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);
@@ -55,7 +48,8 @@ public class ListFilterTest {
 	@Test
 	public void testTalkPagePermitted() {
 		Page page = new Page();
-		page.Title = new Title(1, "permitted", namespaceSet);
+		page.Title = "Talk:permitted";
+		page.Ns = 1;
 
 		try {
 			filter.writeStartPage(page);
@@ -70,7 +64,8 @@ public class ListFilterTest {
 	@Test
 	public void testPageFiltered() {
 		Page page = new Page();
-		page.Title = new Title(0, "filtered", namespaceSet);
+		page.Title = "filtered";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);
@@ -85,7 +80,8 @@ public class ListFilterTest {
 	@Test
 	public void testTalkPageFiltered() {
 		Page page = new Page();
-		page.Title = new Title(1, "filtered", namespaceSet);
+		page.Title = "Talk:filtered";
+		page.Ns = 1;
 
 		try {
 			filter.writeStartPage(page);

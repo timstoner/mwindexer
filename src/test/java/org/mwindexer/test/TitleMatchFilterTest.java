@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.mwindexer.filters.TitleMatchFilter;
 import org.mwindexer.indexer.NamespaceSet;
 import org.mwindexer.model.Page;
-import org.mwindexer.model.Title;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,22 +21,17 @@ public class TitleMatchFilterTest {
 
 	private TitleMatchFilter filter;
 
-	private NamespaceSet namespaceSet;
-
 	@Before
 	public void setUp() throws ParseException {
 		writer = new MockDumpWriter();
-
-		namespaceSet = new NamespaceSet();
-		namespaceSet.add(0, "");
-
 		filter = new TitleMatchFilter(writer, "[1]+");
 	}
 
 	@Test
 	public void testPagePermitted() {
 		Page page = new Page();
-		page.Title = new Title(0, "111", namespaceSet);
+		page.Title = "111";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);
@@ -52,7 +46,8 @@ public class TitleMatchFilterTest {
 	@Test
 	public void testPageFiltered() {
 		Page page = new Page();
-		page.Title = new Title(0, "asdf", namespaceSet);
+		page.Title = "asdf";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);

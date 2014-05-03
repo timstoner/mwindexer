@@ -41,7 +41,8 @@ public class ExactListFilterTest {
 	@Test
 	public void testPagePermitted() {
 		Page page = new Page();
-		page.Title = new Title(0, "permitted", namespaceSet);
+		page.Title = "permitted";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);
@@ -56,7 +57,8 @@ public class ExactListFilterTest {
 	@Test
 	public void testTalkPagePermitted() {
 		Page page = new Page();
-		page.Title = new Title(1, "permitted", namespaceSet);
+		page.Title = "Talk: permitted";
+		page.Ns = 1;
 
 		try {
 			filter.writeStartPage(page);
@@ -71,7 +73,8 @@ public class ExactListFilterTest {
 	@Test
 	public void testPageFiltered() {
 		Page page = new Page();
-		page.Title = new Title(0, "filtered", namespaceSet);
+		page.Title = "filtered";
+		page.Ns = 0;
 
 		try {
 			filter.writeStartPage(page);
@@ -86,7 +89,8 @@ public class ExactListFilterTest {
 	@Test
 	public void testTalkPageFiltered() {
 		Page page = new Page();
-		page.Title = new Title(1, "filtered", namespaceSet);
+		page.Title = "Talk: filtered";
+		page.Ns = 1;
 
 		try {
 			filter.writeStartPage(page);

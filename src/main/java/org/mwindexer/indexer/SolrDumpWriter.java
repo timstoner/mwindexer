@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 public class SolrDumpWriter implements DumpWriter {
 	private static Logger LOG = LoggerFactory.getLogger(SolrDumpWriter.class);
 
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 
 	private SolrServer solrServer;
 
@@ -48,9 +48,6 @@ public class SolrDumpWriter implements DumpWriter {
 		LOG.info(msg);
 		this.bufferSize = bufferSize;
 
-		// solrInputDocuments = new LinkedList<>();
-		// solrInputDocuments =
-		// Collections.synchronizedList(solrInputDocuments);
 		textIndexers = new LinkedList<>();
 
 		switch (type) {
@@ -63,7 +60,6 @@ public class SolrDumpWriter implements DumpWriter {
 		}
 
 		articles = new LinkedList<>();
-		// worker = new ArticleWorker();
 	}
 
 	public void setSolrFieldMap(SolrFieldMap map) {
@@ -83,7 +79,7 @@ public class SolrDumpWriter implements DumpWriter {
 					ThreadPoolExecutor executor) {
 				LOG.debug("ThreadPoolExecutor rejected task, retrying in 100ms");
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					LOG.warn("Thread interrupted while waiting...", e);
 				} finally {
@@ -109,6 +105,8 @@ public class SolrDumpWriter implements DumpWriter {
 		startArticleWorker();
 		// commit to the solr index
 		commitSolrDocuments();
+
+		executor.shutdown();
 	}
 
 	@Override
@@ -126,9 +124,6 @@ public class SolrDumpWriter implements DumpWriter {
 		} else {
 			handleArticle = true;
 		}
-		// queue.add(page);
-		// doc = new SolrInputDocument();
-
 	}
 
 	@Override
@@ -143,12 +138,6 @@ public class SolrDumpWriter implements DumpWriter {
 				startArticleWorker();
 			}
 		}
-		// solrInputDocuments.add(doc);
-		//
-		// if (solrInputDocuments.size() == bufferSize) {
-		// addSolrDocuments();
-		// commitSolrDocuments();
-		// }
 	}
 
 	@Override
@@ -157,17 +146,6 @@ public class SolrDumpWriter implements DumpWriter {
 		if (handleArticle) {
 			currentArticle.Revisions.add(revision);
 		}
-		// doc.addField(fieldMap.getTimestampField(),
-		// Tools.formatTimestamp(revision.Timestamp));
-		// doc.addField(fieldMap.getCommentField(), revision.Comment);
-		// doc.addField(fieldMap.getTextField(), revision.Text);
-		//
-		// for (TextIndexer indexer : textIndexers) {
-		// Map<String, Object> fields = indexer.indexText(revision.Text);
-		// for (Map.Entry<String, Object> entry : fields.entrySet()) {
-		// doc.addField(entry.getKey(), entry.getValue());
-		// }
-		// }
 	}
 
 	private void startArticleWorker() {
@@ -181,7 +159,7 @@ public class SolrDumpWriter implements DumpWriter {
 
 	private void addSolrDocuments(List<SolrInputDocument> doc) {
 		// solr complains if you add 0 documents 'missing content stream'
-		if (doc.size() > 0 && !DEBUG) {
+		if (doc.size() > 0) {
 			try {
 				UpdateResponse response = solrServer.add(doc);
 				LOG.debug("Solr Add Response {}", response);
@@ -192,14 +170,12 @@ public class SolrDumpWriter implements DumpWriter {
 	}
 
 	private void commitSolrDocuments() {
-		if (!DEBUG) {
-			UpdateResponse response;
-			try {
-				response = solrServer.commit();
-				LOG.debug("Solr Commit Response {}", response);
-			} catch (SolrServerException | IOException e) {
-				LOG.error("Problem commiting documents to solr server", e);
-			}
+		UpdateResponse response;
+		try {
+			response = solrServer.commit();
+			LOG.info("Solr Commit Response {}", response);
+		} catch (SolrServerException | IOException e) {
+			LOG.error("Problem commiting documents to solr server", e);
 		}
 	}
 
@@ -244,9 +220,15 @@ public class SolrDumpWriter implements DumpWriter {
 
 			Page page = article.Page;
 			doc.addField(fieldMap.getPageIdField(), page.Id);
-			doc.addField(fieldMap.getTitleField(), page.Title.Text);
-			doc.addField(fieldMap.getRedirectField(), page.isRedirect);
-			doc.addField(fieldMap.getRestrictionsField(), page.Restrictions);
+			doc.addField(fieldMap.getTitleField(), page.Title, 1.5f);
+			doc.addField(fieldMap.getNamespaceField(), page.Ns);
+			// doc.addField(fieldMap.getRedirectField(), page.isRedirect);
+			// doc.addField(fieldMap.getRestrictionsField(), page.Restrictions);
+
+			// down-boost non main articles
+			if (page.Ns != 0) {
+				doc.setDocumentBoost(0.5f);
+			}
 
 			List<Revision> revisions = article.Revisions;
 			// should only be one revision at this time
