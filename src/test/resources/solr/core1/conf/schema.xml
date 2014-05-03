@@ -16,8 +16,7 @@
 		<fieldType name="id" class="solr.UUIDField" indexed="false" />
 
 		<fieldType name="string" class="solr.StrField"
-			sortMissingLast="true" omitNorms="true" />
-		<fieldType name="facet" class="solr.StrField" indexed="true" />
+			sortMissingLast="true" />
 
 		<!-- boolean type: "true" or "false" -->
 		<fieldType name="boolean" class="solr.BoolField"
@@ -113,26 +112,49 @@
 			<filter class="solr.LowerCaseFilterFactory" />
 		</fieldType>
 
-    <fieldType name="text_suggest" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
-            <tokenizer class="solr.UAX29URLEmailTokenizerFactory"/>
-            <filter class="solr.StopFilterFactory" ignoreCase="true" />
-            <filter class="solr.LowerCaseFilterFactory"/>
-            <filter class="solr.ASCIIFoldingFilterFactory"/>
-            <filter class="solr.EnglishPossessiveFilterFactory"/>
-      </analyzer>
-    </fieldType>
+		<fieldType name="text_wiki" class="solr.TextField"
+			positionIncrementGap="100">
+			<analyzer>
+				<tokenizer class="solr.WikipediaTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.StopFilterFactory" />
+				<filter class="solr.EnglishPossessiveFilterFactory" />
+				<filter class="solr.PorterStemFilterFactory" />
+			</analyzer>
+		</fieldType>
+
+		<fieldType name="text_html" class="solr.TextField"
+			positionIncrementGap="100">
+			<analyzer>
+				<charFilter class="solr.HTMLStripCharFilterFactory" />
+				<tokenizer class="solr.StandardTokenizerFactory" />
+				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.StopFilterFactory" />
+				<filter class="solr.PorterStemFilterFactory" />
+			</analyzer>
+		</fieldType>
+
+		<fieldType name="text_general_edge_ngram" class="solr.TextField"
+			positionIncrementGap="100">
+			<analyzer type="index">
+				<tokenizer class="solr.LowerCaseTokenizerFactory" />
+				<filter class="solr.EdgeNGramFilterFactory" minGramSize="2"
+					maxGramSize="15" side="front" />
+			</analyzer>
+			<analyzer type="query">
+				<tokenizer class="solr.LowerCaseTokenizerFactory" />
+			</analyzer>
+		</fieldType>
 
 		<!-- A text field with defaults appropriate for English: it tokenizes with 
-			StandardTokenizer, removes English stop words (lang/stopwords_en.txt), down 
-			cases, protects words from protwords.txt, and finally applies Porter's stemming. 
-			The query time analyzer also applies synonyms from synonyms.txt. -->
+			StandardTokenizer, removes English stop words, down cases , and finally applies 
+			Porter's stemming. -->
 		<fieldType name="text_en" class="solr.TextField"
 			positionIncrementGap="100">
 			<analyzer>
 				<tokenizer class="solr.StandardTokenizerFactory" />
-				<filter class="solr.StopFilterFactory" ignoreCase="true" />
 				<filter class="solr.LowerCaseFilterFactory" />
+				<filter class="solr.StopFilterFactory" />
 				<filter class="solr.EnglishPossessiveFilterFactory" />
 				<filter class="solr.PorterStemFilterFactory" />
 			</analyzer>
@@ -157,9 +179,10 @@
 	</types>
 
 	<fields>
-		<field name="id" type="string" stored="true" indexed="true" required="true" />
+		<field name="id" type="string" stored="true" indexed="true"
+			required="true" />
 
-		<field name="text" type="text_general" stored="false" indexed="true"
+		<field name="text" type="text_en" stored="false" indexed="true"
 			multiValued="true" />
 
 		<!-- SolrCloud version field -->
@@ -189,10 +212,22 @@
 		<dynamicField name="*_ls" type="long" indexed="true"
 			stored="true" multiValued="true" />
 
-		<dynamicField name="*_t" type="text_general" indexed="true"
+		<dynamicField name="*_t" type="text_en" indexed="true"
 			stored="true" />
 
-		<dynamicField name="*_ts" type="text_general" indexed="true"
+		<dynamicField name="*_ts" type="text_en" indexed="true"
+			stored="true" multiValued="true" />
+
+		<dynamicField name="*_th" type="text_html" indexed="true"
+			stored="true" />
+
+		<dynamicField name="*_ths" type="text_html" indexed="true"
+			stored="true" multiValued="true" />
+
+		<dynamicField name="*_tw" type="text_wiki" indexed="true"
+			stored="true" />
+
+		<dynamicField name="*_tws" type="text_wiki" indexed="true"
 			stored="true" multiValued="true" />
 
 		<dynamicField name="*_en" type="text_en" indexed="true"
@@ -216,8 +251,9 @@
 		<dynamicField name="*_ds" type="double" indexed="true"
 			stored="true" multiValued="true" />
 
- 		<!-- Type used to index the lat and lon components for the "location" FieldType -->
- 		<dynamicField name="*_coordinate"  type="tdouble" indexed="true"  stored="false" />
+		<!-- Type used to index the lat and lon components for the "location" FieldType -->
+		<dynamicField name="*_coordinate" type="tdouble" indexed="true"
+			stored="false" />
 
 		<dynamicField name="*_dt" type="date" indexed="true"
 			stored="true" />
@@ -225,8 +261,10 @@
 		<dynamicField name="*_dts" type="date" indexed="true"
 			stored="true" multiValued="true" />
 
-                <dynamicField name="*_p"  type="location" indexed="true" stored="true" />
-<dynamicField name="*_ps"  type="location" indexed="true" stored="true" multiValued="true"/>
+		<dynamicField name="*_p" type="location" indexed="true"
+			stored="true" />
+		<dynamicField name="*_ps" type="location" indexed="true"
+			stored="true" multiValued="true" />
 
 		<!-- some trie-coded dynamic fields for faster range queries -->
 		<dynamicField name="*_ti" type="tint" indexed="true"
@@ -262,6 +300,14 @@
 		<copyField source="*_t" dest="text" />
 
 		<copyField source="*_ts" dest="text" />
+
+		<copyField source="*_tw" dest="text" />
+
+		<copyField source="*_tws" dest="text" />
+
+		<copyField source="*_th" dest="text" />
+
+		<copyField source="*_ths" dest="text" />
 
 	</fields>
 
