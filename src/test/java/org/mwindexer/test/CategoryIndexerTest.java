@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.indexer.CategoryIndexer;
+import org.mediawiki.indexer.io.CategoryIndexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

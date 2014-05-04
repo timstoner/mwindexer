@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.indexer.CoordIndexer;
+import org.mediawiki.indexer.io.CoordIndexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

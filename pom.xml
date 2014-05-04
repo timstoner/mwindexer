@@ -214,7 +214,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.mwindexer.Main</mainClass>
+							<mainClass>org.mediawiki.indexer.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

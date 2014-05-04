@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.mwindexer.indexer.MediaWikiIndexer;
+import org.mediawiki.indexer.io.MediaWikiIndexer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

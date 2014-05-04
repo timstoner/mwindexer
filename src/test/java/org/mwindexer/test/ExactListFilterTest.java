@@ -6,10 +6,10 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.filters.ExactListFilter;
-import org.mwindexer.indexer.NamespaceSet;
-import org.mwindexer.model.Page;
-import org.mwindexer.model.Title;
+import org.mediawiki.indexer.filter.ExactListFilter;
+import org.mediawiki.indexer.io.NamespaceSet;
+import org.mediawiki.indexer.model.Page;
+import org.mediawiki.indexer.model.Title;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

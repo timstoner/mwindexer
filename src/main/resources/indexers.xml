@@ -3,11 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="coordIndexer" class="org.mwindexer.indexer.CoordIndexer">
+	<bean id="coordIndexer" class="org.mediawiki.indexer.io.CoordIndexer">
 		<constructor-arg name="pattern" value="\{\{Coord.*?\}\}" />
 		<constructor-arg name="fieldName" value="location_ps" />
 	</bean>
-	<bean id="categoryIndexer" class="org.mwindexer.indexer.CategoryIndexer">
+	<bean id="categoryIndexer" class="org.mediawiki.indexer.io.CategoryIndexer">
 		<constructor-arg name="pattern" value="\\[\\[Category:.*?\\]\\]" />
 		<constructor-arg name="fieldName" value="category_ss" />
 	</bean>

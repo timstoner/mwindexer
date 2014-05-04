@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Test;
-import org.mwindexer.Tools;
-import org.mwindexer.indexer.XmlDumpReader;
+import org.mediawiki.indexer.Tools;
+import org.mediawiki.indexer.io.XmlDumpReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

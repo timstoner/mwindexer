@@ -8,9 +8,9 @@ import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.Tools;
-import org.mwindexer.filters.AfterTimeStampFilter;
-import org.mwindexer.model.Revision;
+import org.mediawiki.indexer.Tools;
+import org.mediawiki.indexer.filter.AfterTimeStampFilter;
+import org.mediawiki.indexer.model.Revision;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

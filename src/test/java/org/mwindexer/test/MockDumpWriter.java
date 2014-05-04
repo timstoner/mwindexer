@@ -2,10 +2,10 @@ package org.mwindexer.test;
 
 import java.io.IOException;
 
-import org.mwindexer.DumpWriter;
-import org.mwindexer.model.Page;
-import org.mwindexer.model.Revision;
-import org.mwindexer.model.Siteinfo;
+import org.mediawiki.indexer.DumpWriter;
+import org.mediawiki.indexer.model.Page;
+import org.mediawiki.indexer.model.Revision;
+import org.mediawiki.indexer.model.Siteinfo;
 
 public class MockDumpWriter implements DumpWriter {
 

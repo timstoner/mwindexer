@@ -35,8 +35,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.indexer.NamespaceSet;
-import org.mwindexer.model.Title;
+import org.mediawiki.indexer.io.NamespaceSet;
+import org.mediawiki.indexer.model.Title;
 
 public class TitleTest {
 	NamespaceSet namespaces;

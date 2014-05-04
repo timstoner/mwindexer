@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.filters.ListFilter;
-import org.mwindexer.model.Page;
+import org.mediawiki.indexer.filter.ListFilter;
+import org.mediawiki.indexer.model.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

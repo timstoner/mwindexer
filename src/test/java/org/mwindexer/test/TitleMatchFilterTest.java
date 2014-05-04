@@ -7,9 +7,9 @@ import java.text.ParseException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mwindexer.filters.TitleMatchFilter;
-import org.mwindexer.indexer.NamespaceSet;
-import org.mwindexer.model.Page;
+import org.mediawiki.indexer.filter.TitleMatchFilter;
+import org.mediawiki.indexer.io.NamespaceSet;
+import org.mediawiki.indexer.model.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
