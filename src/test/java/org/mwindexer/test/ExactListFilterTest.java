@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.mediawiki.indexer.filter.ExactListFilter;
 import org.mediawiki.indexer.io.NamespaceSet;
 import org.mediawiki.indexer.model.Page;
-import org.mediawiki.indexer.model.Title;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
