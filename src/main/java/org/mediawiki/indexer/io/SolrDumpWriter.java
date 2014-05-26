@@ -91,7 +91,7 @@ public class SolrDumpWriter implements DumpWriter {
 
 	@Override
 	public void close() throws IOException {
-
+		executor.shutdown();
 	}
 
 	@Override
@@ -105,8 +105,6 @@ public class SolrDumpWriter implements DumpWriter {
 		startArticleWorker();
 		// commit to the solr index
 		commitSolrDocuments();
-
-		executor.shutdown();
 	}
 
 	@Override

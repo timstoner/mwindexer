@@ -8,7 +8,7 @@
 
 	<context:property-placeholder location="classpath:indexer.properties " />
 
-	<bean id="solrWriter" class="org.mwindexer.indexer.SolrDumpWriter">
+	<bean id="solrWriter" class="org.mediawiki.indexer.io.SolrDumpWriter">
 		<constructor-arg name="location" value="${solr.location}" />
 		<constructor-arg name="type" value="${solr.type}" />
 		<constructor-arg name="bufferSize" value="${solr.buffersize}" />
@@ -25,13 +25,13 @@
 	</bean>
 
 	<!-- Filters 'decorate' dump writers -->
-	<bean id="progressFilter" class="org.mwindexer.filters.ProgressFilter">
+	<bean id="progressFilter" class="org.mediawiki.indexer.filter.ProgressFilter">
 		<constructor-arg name="sink" ref="solrWriter" />
 		<constructor-arg name="interval" value="${progress.interval}" />
 	</bean>
 
 	<!-- multi writer wraps individual writers -->
-	<bean id="multiWriter" class="org.mwindexer.indexer.MultiWriter">
+	<bean id="multiWriter" class="org.mediawiki.indexer.io.MultiWriter">
 		<property name="writers">
 			<list>
 				<ref bean="progressFilter" />
@@ -40,7 +40,7 @@
 	</bean>
 
 	<!-- the class that parses the xml file -->
-	<bean id="xmlReader" class="org.mwindexer.indexer.XmlDumpReader">
+	<bean id="xmlReader" class="org.mediawiki.indexer.io.XmlDumpReader">
 		<property name="dumpWriter" ref="multiWriter" />
 	</bean>
 

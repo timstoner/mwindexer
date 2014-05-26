@@ -126,8 +126,9 @@ public class XmlDumpReader extends DefaultHandler {
 			throw (IOException) new IOException(e.getMessage()).initCause(e);
 		} catch (SAXException e) {
 			throw (IOException) new IOException(e.getMessage()).initCause(e);
+		} finally {
+			dumpWriter.close();
 		}
-		dumpWriter.close();
 	}
 
 	/**
