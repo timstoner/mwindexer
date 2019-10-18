@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.0.3.RELEASE</spring.version>
-		<solr.version>4.7.2</solr.version>
+		<solr.version>8.2.0</solr.version>
 		<lucene.version>4.7.2</lucene.version>
 	</properties>
 
